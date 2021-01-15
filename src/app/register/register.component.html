@@ -1,0 +1,48 @@
+<mat-card class="matcard">
+        <h4>
+            Fundoo
+        </h4>
+    <mat-card-subtitle>
+        <h2>
+            Create Your Fundoo Account
+        </h2>
+    </mat-card-subtitle>
+    <mat-card-content fxLayout="column">
+        <div class="flex-container" fxLayout="row" fxLayoutGap="10px">
+            <div>
+                <div class="flex-container" fxLayout="row" fxLayoutGap="10px">
+                    <mat-form-field appearance="outline" class="input">
+                        <mat-label>First Name</mat-label>
+                            <input type="text" matInput required>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="input">
+                        <mat-label>Last Name</mat-label>
+                            <input type="text" matInput required>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field appearance="outline" class="input">
+                        <mat-label>Username</mat-label>
+                            <input type="email" matInput placeholder="Enter your email"required>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field appearance="outline" class="input">
+                        <mat-label>password</mat-label>
+                            <input type="text" matInput placeholder="Enter your mobile" required>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field appearance="outline" class="input">
+                        <mat-label>confirm</mat-label>
+                            <input type="password" matInput placeholder="Enter your password" required>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <button mat-raised-button color="primary" style="margin-top: 30px"class="button">Next</button>
+                </div>
+            </div>
+            <img mat-card-image src="https://ssl.gstatic.com/accounts/signup/glif/account.svg" alt="Photo of a Shiba Inu">
+        </div>
+    </mat-card-content>
+</mat-card>
