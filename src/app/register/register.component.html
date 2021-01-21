@@ -1,48 +1,73 @@
 <mat-card class="matcard">
-        <h4>
-            Fundoo
-        </h4>
-    <mat-card-subtitle>
-        <h2>
-            Create Your Fundoo Account
-        </h2>
-    </mat-card-subtitle>
-    <mat-card-content fxLayout="column">
+  <h4>
+    Fundoo Notes
+  </h4>
+  <mat-card-subtitle>
+    <h2 style="color: #202124;font-family: 'Google Sans','Noto Sans Myanmar UI',arial,sans-serif;">
+      Create Your Fundoo Account
+    </h2>
+  </mat-card-subtitle>
+  <form autocomplete="off" novalidate fxLayout="column wrap" fxLayoutAlign="center" fxLayoutGap="10px">
+    <div class="flex-container" fxLayout="row" fxLayoutGap="10px">
+      <div>
         <div class="flex-container" fxLayout="row" fxLayoutGap="10px">
-            <div>
-                <div class="flex-container" fxLayout="row" fxLayoutGap="10px">
-                    <mat-form-field appearance="outline" class="input">
-                        <mat-label>First Name</mat-label>
-                            <input type="text" matInput required>
-                    </mat-form-field>
-                    <mat-form-field appearance="outline" class="input">
-                        <mat-label>Last Name</mat-label>
-                            <input type="text" matInput required>
-                    </mat-form-field>
-                </div>
-                <div>
-                    <mat-form-field appearance="outline" class="input">
-                        <mat-label>Username</mat-label>
-                            <input type="email" matInput placeholder="Enter your email"required>
-                    </mat-form-field>
-                </div>
-                <div>
-                    <mat-form-field appearance="outline" class="input">
-                        <mat-label>password</mat-label>
-                            <input type="text" matInput placeholder="Enter your mobile" required>
-                    </mat-form-field>
-                </div>
-                <div>
-                    <mat-form-field appearance="outline" class="input">
-                        <mat-label>confirm</mat-label>
-                            <input type="password" matInput placeholder="Enter your password" required>
-                    </mat-form-field>
-                </div>
-                <div>
-                    <button mat-raised-button color="primary" style="margin-top: 30px"class="button">Next</button>
-                </div>
-            </div>
-            <img mat-card-image src="https://ssl.gstatic.com/accounts/signup/glif/account.svg" alt="Photo of a Shiba Inu">
+          <mat-form-field appearance="outline" class="input">
+            <mat-label>First Name</mat-label>
+            <input type="text" matInput [formControl]="firstname" name="firstName" [(ngModel)]="registration.firstName" required>
+            <mat-error *ngIf="firstname.invalid">{{firstnameValidation()}}</mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="input">
+            <mat-label>Last Name</mat-label>
+            <input type="text" matInput [formControl]="lastname" name="lastName" [(ngModel)]="registration.lastName" required>
+            <mat-error *ngIf="lastname.invalid">{{lastNameValidation()}}</mat-error>
+          </mat-form-field>
         </div>
-    </mat-card-content>
+        <div>
+          <mat-form-field id="username" appearance="outline" class="input">
+            <mat-label>Username</mat-label>
+            <input type="email" id="email" [formControl]="email" name="email" matInput placeholder="Enter your email"
+              [(ngModel)]="registration.email" required>
+            <mat-error *ngIf="email.invalid"> {{emailValidation()}}</mat-error>
+            <mat-hint>you can use letters , numbers & periods</mat-hint>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field id="phoneNumber" appearance="outline" class="input">
+            <mat-label>phone number</mat-label>
+            <input type="email" id="phone" [formControl]="phoneNumber" name="mobile" matInput placeholder="phone number"
+              [(ngModel)]="registration.phoneNumber" required>
+            <mat-error *ngIf="phoneNumber.invalid"> {{getErrorPassword()}}</mat-error>
+          </mat-form-field>
+        </div>
+        <div>
+          <div class="flex-container" fxLayout="row" fxLayoutGap="10px">
+            <mat-form-field appearance="outline" class="input">
+              <mat-label>password</mat-label>
+              <input type="password" matInput [formControl]="password" name="password" placeholder="password"
+                [(ngModel)]="registration.password" required>
+              <mat-error *ngIf="password.invalid"> {{getErrorPassword()}}</mat-error>
+              <mat-hint>Use 8 or more characters with a mix of letters, numbers & symbols</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="input">
+              <mat-label>confirm</mat-label>
+              <input type="password" matInput [(ngModel)]="confirmPassword" [type]="hide ? 'password' : 'text'" name="confirmPassword" required>
+              <!-- <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">           
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button> -->
+              <mat-error *ngIf="doesPasswordMatch">does not match</mat-error>
+              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+          </div>
+        </div>
+        <div>
+          <button mat-raised-button type="submit" style="float:right;" (click)="Register()"
+            [disabled]="firstname.invalid || lastname.invalid || email.invalid || password.invalid || confirmPassword.invalid"
+            color="primary">register</button>
+        </div>
+      </div>
+      <img mat-card-image  class="image"src="https://ssl.gstatic.com/accounts/signup/glif/account.svg">
+    </div>
+  </form>
 </mat-card>

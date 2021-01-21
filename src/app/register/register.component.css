@@ -1,25 +1,41 @@
 .matcard{
-    height: 748px;
-    width: 600px;
+    max-width: 700px;
+    max-height: 550px;
     margin-left:auto;
     margin-right:auto;
     margin-top: 3vw;
-    margin-bottom: auto;
     padding: 3rem 2rem;
     font-family: 'Google Sans','Noto Sans Myanmar UI',arial,sans-serif;
 }
-mat-card-content {
-}
 
 mat-form-field{
+    margin: 10px;
     font-size: 14px;
-    height: 20px;
-    padding: 6px 8px;
-    margin: 20px;
-    box-sizing: inherit;
-    font-family: roboto,'Noto Sans Myanmar UI',arial,sans-serif;
+    font-weight: 500;
 }
 
 .mat-card-image{
     width: 300px;
+}
+
+mat-hint{
+    margin-bottom: 2px;
+}
+
+#username{
+    width: 100%;
+}
+
+#usernameSuffix{
+    margin-right: 90px;
+    margin-left: 0px;
+    margin-bottom: 0px;
+}
+
+.image{
+    width: 250px;
+    height: 400px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
 }
