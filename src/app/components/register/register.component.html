@@ -1,6 +1,6 @@
 <mat-card class="matcard">
   <h4>
-    Fundoo Notes
+    FundooNotes
   </h4>
   <mat-card-subtitle>
     <h2 style="color: #202124;font-family: 'Google Sans','Noto Sans Myanmar UI',arial,sans-serif;">
@@ -13,12 +13,14 @@
         <div class="flex-container" fxLayout="row" fxLayoutGap="10px">
           <mat-form-field appearance="outline" class="input">
             <mat-label>First Name</mat-label>
-            <input type="text" matInput [formControl]="firstname" name="firstName" [(ngModel)]="registration.firstName" required>
+            <input type="text" matInput [formControl]="firstname" name="firstName" [(ngModel)]="registration.firstName"
+              required>
             <mat-error *ngIf="firstname.invalid">{{firstnameValidation()}}</mat-error>
           </mat-form-field>
           <mat-form-field appearance="outline" class="input">
             <mat-label>Last Name</mat-label>
-            <input type="text" matInput [formControl]="lastname" name="lastName" [(ngModel)]="registration.lastName" required>
+            <input type="text" matInput [formControl]="lastname" name="lastName" [(ngModel)]="registration.lastName"
+              required>
             <mat-error *ngIf="lastname.invalid">{{lastNameValidation()}}</mat-error>
           </mat-form-field>
         </div>
@@ -36,7 +38,7 @@
             <mat-label>phone number</mat-label>
             <input type="email" id="phone" [formControl]="phoneNumber" name="mobile" matInput placeholder="phone number"
               [(ngModel)]="registration.phoneNumber" required>
-            <mat-error *ngIf="phoneNumber.invalid"> {{getErrorPassword()}}</mat-error>
+            <mat-error *ngIf="phoneNumber.invalid"> {{getErrorPhoneNumber()}}</mat-error>
           </mat-form-field>
         </div>
         <div>
@@ -50,24 +52,22 @@
             </mat-form-field>
             <mat-form-field appearance="outline" class="input">
               <mat-label>confirm</mat-label>
-              <input type="password" matInput [(ngModel)]="confirmPassword" [type]="hide ? 'password' : 'text'" name="confirmPassword" required>
-              <!-- <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">           
-                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-              </button> -->
+              <input matInput [(ngModel)]="confirmPassword" [type]="show ? 'text' : 'password'" name="confirmPassword"
+                required>
               <mat-error *ngIf="doesPasswordMatch">does not match</mat-error>
-              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                </button>
             </mat-form-field>
+          </div>
+          <div>
+            <mat-checkbox class="example-margin" name="showPassword" [(ngModel)]="show">Show Password</mat-checkbox>
           </div>
         </div>
         <div>
           <button mat-raised-button type="submit" style="float:right;" (click)="Register()"
-            [disabled]="firstname.invalid || lastname.invalid || email.invalid || password.invalid || confirmPassword.invalid"
+            [disabled]="firstname.invalid || lastname.invalid || email.invalid || password.invalid"
             color="primary">register</button>
         </div>
       </div>
-      <img mat-card-image  class="image"src="https://ssl.gstatic.com/accounts/signup/glif/account.svg">
+      <img mat-card-image class="image" src="https://ssl.gstatic.com/accounts/signup/glif/account.svg">
     </div>
   </form>
 </mat-card>

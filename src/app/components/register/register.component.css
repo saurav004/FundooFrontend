@@ -18,9 +18,6 @@ mat-form-field{
     width: 300px;
 }
 
-mat-hint{
-    margin-bottom: 2px;
-}
 
 #username{
     width: 100%;
@@ -38,4 +35,12 @@ mat-hint{
     margin-left: 0px;
     margin-right: 0px;
     margin-bottom: 0px;
+}
+
+.example-margin {
+    margin-top: 10px;
+  }
+
+mat-error,mat-hint{
+    margin-bottom: 5px;
 }
