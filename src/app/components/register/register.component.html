@@ -1,69 +1,69 @@
 <mat-card class="matcard">
-  <h4>
-    FundooNotes
-  </h4>
+  <app-title></app-title>
   <mat-card-subtitle>
     <h2 style="color: #202124;font-family: 'Google Sans','Noto Sans Myanmar UI',arial,sans-serif;">
       Create Your Fundoo Account
     </h2>
   </mat-card-subtitle>
-  <form autocomplete="off" novalidate fxLayout="column wrap" fxLayoutAlign="center" fxLayoutGap="10px">
+  <form [formGroup]="reactiveForm" autocomplete="off" novalidate fxLayout="column wrap" fxLayoutAlign="center"
+    fxLayoutGap="10px">
     <div class="flex-container" fxLayout="row" fxLayoutGap="10px">
       <div>
         <div class="flex-container" fxLayout="row" fxLayoutGap="10px">
           <mat-form-field appearance="outline" class="input">
             <mat-label>First Name</mat-label>
-            <input type="text" matInput [formControl]="firstname" name="firstName" [(ngModel)]="registration.firstName"
-              required>
-            <mat-error *ngIf="firstname.invalid">{{firstnameValidation()}}</mat-error>
+            <input type="text" matInput formControlName="firstName" name="firstName" required>
+            <mat-error *ngIf="reactiveForm.get('firstName').invalid">{{firstNameValidation()}}</mat-error>
           </mat-form-field>
           <mat-form-field appearance="outline" class="input">
             <mat-label>Last Name</mat-label>
-            <input type="text" matInput [formControl]="lastname" name="lastName" [(ngModel)]="registration.lastName"
-              required>
-            <mat-error *ngIf="lastname.invalid">{{lastNameValidation()}}</mat-error>
+            <input type="text" matInput formControlName="lastName" name="lastName" required>
+            <mat-error *ngIf="reactiveForm.get('lastName').invalid">{{lastNameValidation()}}</mat-error>
           </mat-form-field>
         </div>
         <div>
           <mat-form-field id="username" appearance="outline" class="input">
             <mat-label>Username</mat-label>
-            <input type="email" id="email" [formControl]="email" name="email" matInput placeholder="Enter your email"
-              [(ngModel)]="registration.email" required>
-            <mat-error *ngIf="email.invalid"> {{emailValidation()}}</mat-error>
+            <input type="email" id="email" formControlName="email" name="email" matInput placeholder="Enter your email"
+              required>
+            <mat-error *ngIf="reactiveForm.get('email').invalid">{{emailValidation()}}</mat-error>
             <mat-hint>you can use letters , numbers & periods</mat-hint>
           </mat-form-field>
         </div>
         <div>
           <mat-form-field id="phoneNumber" appearance="outline" class="input">
-            <mat-label>phone number</mat-label>
-            <input type="email" id="phone" [formControl]="phoneNumber" name="mobile" matInput placeholder="phone number"
-              [(ngModel)]="registration.phoneNumber" required>
-            <mat-error *ngIf="phoneNumber.invalid"> {{getErrorPhoneNumber()}}</mat-error>
+            <mat-label>Phone Number</mat-label>
+            <input type="email" pattern="^[+]{1}[0-9]{2}[ ]{0,1}[0-9]{10}$" id="phone" formControlName="phoneNumber"
+              name="mobile" matInput placeholder="phone number" required>
+            <mat-error *ngIf="reactiveForm.get('phoneNumber').invalid">{{getErrorPhoneNumber()}}</mat-error>
           </mat-form-field>
         </div>
         <div>
           <div class="flex-container" fxLayout="row" fxLayoutGap="10px">
             <mat-form-field appearance="outline" class="input">
-              <mat-label>password</mat-label>
-              <input type="password" matInput [formControl]="password" name="password" placeholder="password"
-                [(ngModel)]="registration.password" required>
-              <mat-error *ngIf="password.invalid"> {{getErrorPassword()}}</mat-error>
+              <mat-label>Password</mat-label>
+              <input [type]="showPassword ? 'text' : 'password'" matInput formControlName="password" name="password"
+                placeholder="password" required>
+              <mat-error *ngIf="reactiveForm.get('password').errors?.required">Enter Password</mat-error>
+              <mat-error *ngIf="reactiveForm.get('password').errors?.minlength">minimum 8 characters</mat-error>
+              <mat-error *ngIf="reactiveForm.get('password').errors?.maxlength">max 15 characters</mat-error>
               <mat-hint>Use 8 or more characters with a mix of letters, numbers & symbols</mat-hint>
             </mat-form-field>
             <mat-form-field appearance="outline" class="input">
-              <mat-label>confirm</mat-label>
-              <input matInput [(ngModel)]="confirmPassword" [type]="show ? 'text' : 'password'" name="confirmPassword"
-                required>
-              <mat-error *ngIf="doesPasswordMatch">does not match</mat-error>
+              <mat-label>Confirm</mat-label>
+              <input matInput formControlName="confirmPassword" [type]="showPassword ? 'text' : 'password'"
+                name="confirmPassword" required>
+              <mat-error *ngIf="reactiveForm.get('confirmPassword').invalid">{{getErrorConfirmPassword()}}</mat-error>
             </mat-form-field>
           </div>
-          <div>
-            <mat-checkbox class="example-margin" name="showPassword" [(ngModel)]="show">Show Password</mat-checkbox>
+          <div class="showPassword">
+            <mat-checkbox class="example-margin" name="showPassword" [(ngModel)]="showPassword"
+              [ngModelOptions]="{standalone: true}">Show Password</mat-checkbox>
           </div>
         </div>
         <div>
-          <button mat-raised-button type="submit" style="float:right;" (click)="Register()"
-            [disabled]="firstname.invalid || lastname.invalid || email.invalid || password.invalid"
+          <button mat-raised-button type="submit" style="float:right;" (click)="register()"
+            [disabled]="reactiveForm.get('firstName').invalid || reactiveForm.get('lastName').invalid || reactiveForm.get('email').invalid || reactiveForm.get('password').invalid"
             color="primary">register</button>
         </div>
       </div>

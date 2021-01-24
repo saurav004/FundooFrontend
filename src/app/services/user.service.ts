@@ -9,7 +9,7 @@ export class UserService {
   _url= "http://fundoonotes.incubation.bridgelabz.com/api/user/userSignUp";
   constructor(private http : HttpClient) { }
 
-  sinup(register:Registeration){
+  sinUp(register:Registeration){
     return this.http.post<any>(this._url,register);
   }
 }

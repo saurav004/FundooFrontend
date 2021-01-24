@@ -1,28 +1,31 @@
   <mat-card class="login">
     <div fxLayout="column" fxLayoutAlign="center">
-      <mat-card-title class="title">
-        <h2>FundooNotes</h2>
-      </mat-card-title>
-      <mat-card-subtitle class="title">
-        <h1 style="float: center">Login</h1>
-      </mat-card-subtitle>
       <div>
-        <mat-form-field id="username" appearance="outline" class="input">
-          <mat-label>Username</mat-label>
-          <input type="email" id="email" [formControl]="email" name="email" matInput placeholder="Enter your email"
-            [(ngModel)]="login.email" required>
-          <mat-error *ngIf="email.invalid">{{emailValidation()}}</mat-error>
-          <mat-hint>you can use letters , numbers & periods</mat-hint>
-        </mat-form-field>
+        <app-title></app-title>
       </div>
+      <mat-card-subtitle>
+        <h2 style="color: #202124;font-family: 'Google Sans','Noto Sans Myanmar UI',arial,sans-serif;">
+          Login
+        </h2>
+      </mat-card-subtitle>
+      <mat-form-field id="username" appearance="outline" class="input">
+        <mat-label>Username</mat-label>
+        <input type="email" id="email" [formControl]="email" name="email" matInput placeholder="Enter your email"
+          [(ngModel)]="login.email" required>
+        <mat-error *ngIf="email.invalid">{{emailValidation()}}</mat-error>
+        <mat-hint>you can use letters , numbers & periods</mat-hint>
+      </mat-form-field>
       <div>
         <mat-form-field appearance="outline" class="input">
           <mat-label>password</mat-label>
-          <input type="password" matInput [formControl]="password" name="password" placeholder="password"
-            [(ngModel)]="login.password" required>
+          <input [type]="show ? 'text' : 'password'" matInput [formControl]="password" name="password"
+            placeholder="password" [(ngModel)]="login.password" required>
           <mat-error *ngIf="password.invalid"> {{getErrorPassword()}}</mat-error>
           <mat-hint>Use 8 or more characters with a mix of letters, numbers & symbols</mat-hint>
         </mat-form-field>
+      </div>
+      <div class="showPassword">
+        <mat-checkbox class="example-margin" name="showPassword" [(ngModel)]="show">Show Password</mat-checkbox>
       </div>
       <div>
         <button mat-raised-button color="primary" (click)="LoginMethod()"

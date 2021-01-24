@@ -12,13 +12,20 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { TitleComponent } from './components/title/title.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { LoginService } from './services/login.service';
+import { SetPasswordService } from './services/setPassword.service';
 
 
 @NgModule({
   declarations: [
+    ForgotPasswordComponent,
     AppComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    TitleComponent,
+    
   ],
   imports: [
     MatSnackBarModule,
@@ -37,6 +44,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     AppRoutingModule,
   ],
   providers: [
+    SetPasswordService,
+    LoginService,
     UserService,
     PrintHook,
     StyleUtils,

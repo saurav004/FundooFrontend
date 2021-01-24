@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { FormControl, Validators, FormBuilder, FormGroup, AbstractControl } from '@angular/forms';
+import { MatSnackBar } from '@angular/material';
 import { Registeration } from 'src/app/models/Registeration';
 import { UserService } from 'src/app/services/user.service';
 
@@ -10,55 +11,98 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  show = false;
+  showPassword = false;
   doesPasswordMatch = false;
   registration: Registeration = new Registeration();
-  firstname = new FormControl(this.registration.firstName, [Validators.required, Validators.minLength(3), Validators.maxLength(60)]);
-  lastname = new FormControl(this.registration.lastName, [Validators.required, Validators.minLength(3), Validators.maxLength(60)]);
-  email = new FormControl(this.registration.email, [Validators.required, Validators.email]);
-  password = new FormControl(this.registration.password, [Validators.required, Validators.minLength(8), Validators.maxLength(15)]);
-  confirmPassword:string;
-  phoneNumber = new FormControl(this.registration.phoneNumber, [Validators.required, Validators.minLength(10), Validators.maxLength(10)]);
+  reactiveForm: FormGroup;
 
-  constructor(private _userService: UserService) {}
+  constructor(private _userService: UserService, private _snackBar: MatSnackBar, private fb: FormBuilder) { }
 
   ngOnInit() {
+    this.reactiveForm = this.fb.group({
+      "firstName": [this.registration.firstName, [Validators.required, Validators.minLength(3), Validators.maxLength(60)]],
+      "lastName": [this.registration.lastName, [Validators.required, Validators.minLength(3), Validators.maxLength(60)]],
+      "email": [this.registration.email, [Validators.required, Validators.email]],
+      "password": [this.registration.password, [Validators.required, Validators.minLength(8), Validators.maxLength(15)]],
+      "confirmPassword": [null, [Validators.required]],
+      "phoneNumber": [this.registration.phoneNumber, [Validators.required, Validators.minLength(13), Validators.maxLength(15)]],
+    }, { validator: this.passwordMatchValidator("password", "confirmPassword") })
   }
 
-  firstnameValidation() {
-    return this.firstname.hasError('required') ? 'field is required' : '';
+  firstNameValidation() {
+    return this.reactiveForm.controls.firstName.hasError('required') ? 'Enter first name' : '';
   }
   lastNameValidation() {
-    return this.lastname.hasError('required') ? 'field is required' : '';
+    return this.reactiveForm.controls.lastName.hasError('required') ? 'Enter last name' : '';
   }
 
   emailValidation() {
-    return this.email.hasError('required') ? 'field is required' :
-      this.email.hasError('email') ? 'Not a valid email' : '';
+    return this.reactiveForm.controls.email.hasError('required') ? 'Enter email' :
+      this.reactiveForm.controls.email.hasError('email') ? 'Not a valid email' : '';
   }
+
   getErrorPhoneNumber() {
-    return this.phoneNumber.hasError('required') ? 'field is required' :
-      this.phoneNumber.hasError('phoneNumber') ? '10 characters required' : '';
+    console.log(this.reactiveForm);
+    return this.reactiveForm.controls.phoneNumber.hasError('required') ? 'Enter Phone Number' :
+      this.reactiveForm.controls.phoneNumber.errors.maxlength ? 'max 15 characters required' :
+        this.reactiveForm.controls.phoneNumber.errors.minlength ? 'min 13 characters required' :
+          this.reactiveForm.controls.phoneNumber.errors.pattern ? 'pattern do not match (ex: +91 9284543205)' : '';
   }
+
   getErrorPassword() {
-    return this.password.hasError('required') ? 'field is required' :
-      this.password.hasError('password') ? 'min 8 elements' : '';
+    console.log(this.reactiveForm);
+    return this.reactiveForm.controls.password.hasError('required') ? 'Enter Password' :
+      this.reactiveForm.controls.password.errors.maxLength ? 'max 15 characters' :
+        this.reactiveForm.controls.password.errors.minLength ? 'min 8 characters' : '';
   }
-  Register() {
+  getErrorConfirmPassword() {
+    console.log(this.reactiveForm);
+    return this.reactiveForm.controls.confirmPassword.hasError('required') ? 'Enter Password' :
+      this.reactiveForm.controls.confirmPassword.hasError('passwordMismatch') ? 'Passwords do not match' : '';
+  }
+  register() {
     console.log(this.registration);
-    this._userService.sinup(this.registration)
+    console.log(this.reactiveForm);
+    this.registration.firstName = this.reactiveForm.value["firstName"];
+    this.registration.lastName = this.reactiveForm.value["lastName"];
+    this.registration.phoneNumber = this.reactiveForm.value["phoneNumber"];
+    this.registration.email = this.reactiveForm.value["email"];
+    this.registration.password = this.reactiveForm.value["password"];
+    console.log(this.registration)
+    this._userService.sinUp(this.registration)
       .subscribe(
-        data => console.log('Success!', data),
-        error => console.error('Error!', error)
+        data => this.openSnackBar("Account successfully created", "Close"),
+        error => this.openSnackBar("Failed to create account", "Close"),
       )
   }
 
-  // confirm new password validator
-  private passwordMatcher() {
-    if(this.confirmPassword == this.password.value){
-      this.doesPasswordMatch = true;
-    }
-    else
-    this.doesPasswordMatch = false;
+  passwordMatchValidator(password: string, confirmPassword: string) {
+    return (formGroup: FormGroup) => {
+      const passwordControl = formGroup.controls[password];
+      const confirmPasswordControl = formGroup.controls[confirmPassword];
+
+      if (!passwordControl || !confirmPasswordControl) {
+        return null;
+      }
+
+      if (
+        confirmPasswordControl.errors &&
+        !confirmPasswordControl.errors.passwordMismatch
+      ) {
+        return null;
+      }
+
+      if (passwordControl.value !== confirmPasswordControl.value) {
+        confirmPasswordControl.setErrors({ passwordMismatch: true });
+      } else {
+        confirmPasswordControl.setErrors(null);
+      }
+    };
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 3000,
+    });
   }
 }

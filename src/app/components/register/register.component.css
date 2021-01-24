@@ -3,8 +3,8 @@
     max-height: 550px;
     margin-left:auto;
     margin-right:auto;
-    margin-top: 3vw;
-    padding: 3rem 2rem;
+    margin-top: 2vw;
+    padding: 2rem;
     font-family: 'Google Sans','Noto Sans Myanmar UI',arial,sans-serif;
 }
 
@@ -19,8 +19,8 @@ mat-form-field{
 }
 
 
-#username{
-    width: 100%;
+#username, #phoneNumber{
+    width: 96%;
 }
 
 #usernameSuffix{
@@ -43,4 +43,8 @@ mat-form-field{
 
 mat-error,mat-hint{
     margin-bottom: 5px;
+}
+
+.showPassword{
+    margin-top: 20px;
 }
