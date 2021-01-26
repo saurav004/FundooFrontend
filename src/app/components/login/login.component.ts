@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { LoginModel } from 'src/app/models/login';
 import { MatSnackBar } from '@angular/material';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,22 +11,47 @@ import { MatSnackBar } from '@angular/material';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  token: string;
   show = false;
   login: LoginModel = new LoginModel();
   email = new FormControl(this.login.email, [Validators.required, Validators.email]);
   password = new FormControl(this.login.password, [Validators.required, Validators.minLength(8), Validators.maxLength(15)]);
 
-  constructor(private loginService: LoginService,private _snackBar: MatSnackBar) { }
+  constructor(private loginService: LoginService,private _snackBar: MatSnackBar,private route: ActivatedRoute,) { }
   hide: boolean = true;
   ngOnInit() {
+    this.token=this.route.snapshot.paramMap.get('token');
   }
 
   LoginMethod() {
     console.log(this.login);
+    this.token=localStorage.getItem("token")
+
     this.loginService.loginAccount(this.login)
       .subscribe(
-        data => this.openSnackBar("Success","Close"),
-        error => this.openSnackBar("Failed","Close")
+        (response:any)=>{
+          if(response.id != null)
+          {
+            console.log(response);
+            localStorage.setItem("token",response.id);
+            localStorage.setItem("email",response.email);
+            console.log(localStorage);
+
+            this._snackBar.open(
+              "Login Successfull","close",
+              
+               { duration: 2500 }
+           )
+   
+          }else {
+           console.log(response);
+           this._snackBar.open(
+             "Login Failed",
+             "close",
+             { duration: 2500 }
+           )
+         }
+        }
       )
   }
 
@@ -36,7 +62,7 @@ export class LoginComponent implements OnInit {
 
   getErrorPassword() {
     return this.password.hasError('required') ? 'Enter Password' :
-      this.password.hasError('password') ? 'min 8 elements' : '';
+      this.password.hasError('password') ? 'min 8 characters' : '';
   }
 
   openSnackBar(message: string, action: string) {
