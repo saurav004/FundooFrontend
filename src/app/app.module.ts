@@ -16,10 +16,12 @@ import { TitleComponent } from './components/title/title.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { LoginService } from './services/login.service';
 import { SetPasswordService } from './services/setPassword.service';
+import { SetPasswordComponent } from './components/set-password/set-password.component';
 
 
 @NgModule({
   declarations: [
+    SetPasswordComponent,
     ForgotPasswordComponent,
     AppComponent,
     RegisterComponent,

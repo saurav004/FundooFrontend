@@ -1,15 +1,20 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
+import { SetPassword } from '../models/setPassword';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SetPasswordService {
+  baseUrl = environment.baseUrl;
 
-  _url= "http://fundoonotes.incubation.bridgelabz.com/api/user/login";
+  _url= "http://fundoonotes.incubation.bridgelabz.com/api/user/reset";
   constructor(private http : HttpClient) { }
 
-  loginAccount(login_data){
-    return this.http.post<any>(this._url,login_data);
+  setPassword(url:any,data:SetPassword,token){   
+    return this.http.post(this.baseUrl + url,data,{ headers: new HttpHeaders().set('Authorization', token) });
+    }
   }
-}
+
+
