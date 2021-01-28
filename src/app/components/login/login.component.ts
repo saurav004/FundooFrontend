@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { LoginModel } from 'src/app/models/login';
 import { MatSnackBar } from '@angular/material';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,12 +12,12 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   token: string;
-  show = false;
+  showPassword = false;
   login: LoginModel = new LoginModel();
   email = new FormControl(this.login.email, [Validators.required, Validators.email]);
   password = new FormControl(this.login.password, [Validators.required, Validators.minLength(8), Validators.maxLength(15)]);
 
-  constructor(private loginService: LoginService,private _snackBar: MatSnackBar,private route: ActivatedRoute,) { }
+  constructor(private loginService: LoginService,private _snackBar: MatSnackBar,private route: ActivatedRoute,private router: Router) { }
   hide: boolean = true;
   ngOnInit() {
     this.token=this.route.snapshot.paramMap.get('token');
@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
               
                { duration: 2500 }
            )
-   
+           this.router.navigate(['/dashboard']);
           }else {
            console.log(response);
            this._snackBar.open(

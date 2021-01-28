@@ -15,7 +15,10 @@ export class HttpService {
   }
 
   public putRequestWithToken(url :any, data: any ):any{
-    return this.http.put(this.baseUrl + url,data,{ headers: new HttpHeaders().set('token', localStorage.getItem('token')) });
+    return this.http.put(this.baseUrl + url,data,{ headers: new HttpHeaders().set('Authorization', localStorage.getItem('token')) });
+  }
+  public postRequestWithToken(url :any, data: any ):any{
+    return this.http.post(this.baseUrl + url,data,{ headers: new HttpHeaders().set('Authorization', localStorage.getItem('token')) });
   }
 
   public deleteRequest(url :any):any{

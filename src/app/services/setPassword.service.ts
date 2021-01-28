@@ -12,8 +12,8 @@ export class SetPasswordService {
   _url= "http://fundoonotes.incubation.bridgelabz.com/api/user/reset";
   constructor(private http : HttpClient) { }
 
-  setPassword(url:any,data:SetPassword,token){   
-    return this.http.post(this.baseUrl + url,data,{ headers: new HttpHeaders().set('Authorization', token) });
+  setPassword(url:any,data:SetPassword){   
+    return this.http.post(this.baseUrl + url+"?access_token="+localStorage.getItem("token"),data);
     }
   }
 

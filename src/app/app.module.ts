@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { BreakPointRegistry, FlexLayoutModule, FlexStyleBuilder, LayoutAlignStyleBuilder, LayoutGapStyleBuilder, LayoutStyleBuilder, MediaMarshaller, PrintHook, StylesheetMap, StyleUtils, ɵMatchMedia } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule, FormGroup } from '@angular/forms';
-import { MatInputModule, MatButtonModule, MatIconModule, MatFormFieldModule, MatCardModule } from '@angular/material';
+import { MatInputModule, MatButtonModule, MatMenuModule, MatToolbarModule, MatIconModule, MatFormFieldModule, MatCardModule, MatSidenavModule, MatListModule, MatDialogModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { UserService } from './services/user.service';
@@ -17,10 +17,12 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { LoginService } from './services/login.service';
 import { SetPasswordService } from './services/setPassword.service';
 import { SetPasswordComponent } from './components/set-password/set-password.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 
 @NgModule({
   declarations: [
+    DashboardComponent,
     SetPasswordComponent,
     ForgotPasswordComponent,
     AppComponent,
@@ -30,6 +32,10 @@ import { SetPasswordComponent } from './components/set-password/set-password.com
     
   ],
   imports: [
+    MatListModule,
+    MatSidenavModule,
+    MatMenuModule,
+    MatToolbarModule,
     MatSnackBarModule,
     HttpClientModule,
     BrowserModule,
@@ -44,6 +50,7 @@ import { SetPasswordComponent } from './components/set-password/set-password.com
     MatCardModule,
     MatCheckboxModule,
     AppRoutingModule,
+    MatDialogModule 
   ],
   providers: [
     SetPasswordService,

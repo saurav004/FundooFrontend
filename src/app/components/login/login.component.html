@@ -18,14 +18,14 @@
       <div>
         <mat-form-field appearance="outline" class="input">
           <mat-label>Password</mat-label>
-          <input [type]="show ? 'text' : 'password'" matInput [formControl]="password" name="password"
+          <input [type]="showPassword ? 'text' : 'password'" matInput [formControl]="password" name="password"
             placeholder="password" [(ngModel)]="login.password" required>
           <mat-error *ngIf="password.invalid"> {{getErrorPassword()}}</mat-error>
           <mat-hint>Use 8 or more characters with a mix of letters, numbers & symbols</mat-hint>
         </mat-form-field>
       </div>
       <div class="showPassword">
-        <mat-checkbox class="example-margin" name="showPassword" [(ngModel)]="show">Show Password</mat-checkbox>
+        <mat-checkbox class="example-margin" name="showPassword" [(ngModel)]="showPassword">Show Password</mat-checkbox>
       </div>
       <div>
         <button mat-raised-button color="primary" style="float:right;" (click)="LoginMethod()"

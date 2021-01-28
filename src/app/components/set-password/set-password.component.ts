@@ -28,6 +28,8 @@ export class SetPasswordComponent implements OnInit {
 
   ngOnInit() {
     this.token = this.route.snapshot.url[1].path;
+    localStorage.setItem("token", this.token);
+
   }
   emailValidation() {
     return this.passwordResetForm.get('email').hasError('required') ? 'Enter email' :
@@ -70,31 +72,21 @@ export class SetPasswordComponent implements OnInit {
   onSubmit() {
     this.setPasswordObject.newPassword = this.passwordResetForm.controls.password.value;
     console.log(this.setPasswordObject.newPassword);
-    this.setPasswordService.setPassword("/user/reset-password", this.setPasswordObject,this.token).subscribe(
-      (response: any) => {
+    this.setPasswordService.setPassword("/user/reset-password", this.setPasswordObject).subscribe(
+      (response) => {
         console.log(response);
-        if (response) {
-          console.log(response);
-          localStorage.setItem("token", response.token);
-
-          this._snackBar.open(
-            "ResetPassword Successfull", "close",
-
-            { duration: 2500 }
-          )
-          this.router.navigate(['/login'])
-
-        } else {
-          console.log(response);
-          this._snackBar.open(
-            "Reset Failed",
-            "close",
-            { duration: 2500 }
-          )
-        }
+        this._snackBar.open(
+          "Password Successfully Set", "Close",
+          { duration: 2500 }
+        )
+        this.router.navigate(['/login'])
+      },(error) => {                              
+        this._snackBar.open(
+          "Reset Failed",
+          "Close",
+          { duration: 2500 }
+        )
       }
-
     )
-
   }
 } 

@@ -20,7 +20,10 @@ export class ForgotPasswordComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  emailValidation() {
+    return this.email.hasError('required') ? 'Enter email' :
+      this.email.hasError('email') ? 'Not a valid email' : '';
+  }
   onSubmit(){
     console.log(this.forgotPasswordObject);
     this.httpservice.postRequest("user/reset", this.forgotPasswordObject).subscribe(
@@ -32,7 +35,7 @@ export class ForgotPasswordComponent implements OnInit {
             { duration: 2500 }
           )
         }
-      },  error => {
+      },  (error) => {
         this._snackBar.open(
           "Failed to send link",
           "close",
