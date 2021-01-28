@@ -1,0 +1,85 @@
+<div fxLayout="row" fxLayoutAlign="start center">
+
+  <mat-toolbar style="margin-top: -10px;">
+    <div>
+      <button mat-icon-button fxShow="true">
+        <mat-icon matTooltip="Main menu">menu</mat-icon>
+      </button>
+    </div>
+
+    <div>
+      <img style="margin-left: 10px; padding-top: 21%" src="../../../assets/keep_2020q4_48dp.png">
+    </div>
+
+    <div style="margin-left: 10px;margin-top: 19px;">
+      <app-title></app-title>
+    </div>
+    <!-- <div>
+      <h2 style="padding-top: 6%; margin-left: 25px">{{appName}}</h2>
+    </div> -->
+
+    <div fxFlex="60" fxLayout="row" fxLayout.xs="row" fxLayoutAlign="center center">
+      <mat-form-field appearance="outline" [style.fontSize.px]="2" class="search" style=" width: 588px;">
+        <button mat-icon-button class="search-button">
+          <mat-icon matTooltip="Search">search</mat-icon>
+        </button>
+        <input [formControl]='search' fxFlex="100" matInput placeholder="Search" [style.fontSize.px]="16"
+          class="search-window" autocomplete="off" />
+      </mat-form-field>
+
+      <button mat-icon-button class="search-button" style="margin-left: -40px">
+        <mat-icon matTooltip="close ">close</mat-icon>
+      </button>
+    </div>
+    <div>
+      <button style=" margin-left: 0px" class="refresh" mat-icon-button>
+        <mat-icon matTooltip="refresh">refresh</mat-icon>
+      </button>
+    </div>
+
+
+    <div>
+      <div style="margin-right: 10px" class="setting" mat-icon-button>
+        <button matTooltip="menu" mat-button [matMenuTriggerFor]="menu " style="margin-left: 10px ;padding-top: 3%"
+          class="view" mat-icon-button>
+          <mat-icon matTooltip="settings">settings</mat-icon>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>Item 1</button>
+            <button mat-menu-item>Item 2</button>
+          </mat-menu>
+        </button>
+
+      </div>
+
+    </div>
+
+    <div>
+      <button mat-button [matMenuTriggerFor]="menu " style="margin-left: 10px ;padding-top: 3%" class="view"
+        mat-icon-button>
+        <mat-icon matTooltip="appearance" matTooltip="apps">apps
+        </mat-icon>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>Item 1</button>
+          <button mat-menu-item>Item 2</button>
+        </mat-menu>
+      </button>
+    </div>
+
+    <div>
+      <button mat-button style="margin-left: 10px ;padding-top: 3%" mat-icon-button (blur)="onBlurMethod()" (click)="account()" fxShow="true">
+        <mat-icon> account_circle</mat-icon>
+      </button>
+    </div>
+
+  </mat-toolbar>
+  <div>
+    <div>
+      <mat-card class="mat1" *ngIf="open">
+        <div fxLayout="column" fxLayout="row" fxLayoutGap="120px">
+          <button mat-icon-button color="primary" routerLink='/register'>Add Account</button>
+          <button mat-icon-button color="primary" routerLink='/login'>SignOut</button><br>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>

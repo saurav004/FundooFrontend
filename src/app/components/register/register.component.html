@@ -62,6 +62,7 @@
           </div>
         </div>
         <div>
+          <a routerLink='/login'>Sign In instead</a>
           <button mat-raised-button type="submit" style="float:right;" (click)="register()"
             [disabled]="reactiveForm.get('firstName').invalid || reactiveForm.get('lastName').invalid || reactiveForm.get('email').invalid || reactiveForm.get('password').invalid"
             color="primary">register</button>

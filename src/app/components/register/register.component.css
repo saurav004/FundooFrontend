@@ -4,13 +4,13 @@
     margin-left:auto;
     margin-right:auto;
     margin-top: 2vw;
-    padding: 2rem;
+    padding: 1rem 2rem;
     font-family: 'Google Sans','Noto Sans Myanmar UI',arial,sans-serif;
 }
 
 mat-form-field{
-    margin: 10px;
-    font-size: 14px;
+    margin: 8px;
+    font-size: 13px;
     font-weight: 500;
 }
 
@@ -47,4 +47,5 @@ mat-error,mat-hint{
 
 .showPassword{
     margin-top: 20px;
+    margin-bottom: 20px;
 }
