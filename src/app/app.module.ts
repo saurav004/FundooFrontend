@@ -18,10 +18,24 @@ import { LoginService } from './services/login.service';
 import { SetPasswordService } from './services/setPassword.service';
 import { SetPasswordComponent } from './components/set-password/set-password.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ViewNoteComponent } from './components/ViewNote/ViewNote.component';
+import { RemindersComponent } from './components/reminders/reminders.component';
+import { ArchiveComponent } from './components/archive/archive.component';
+import { TrashComponent } from './components/trash/trash.component';
+import { NotesOfCertainLabelComponent } from './components/notesOfCertainLabel/notesOfCertainLabel.component';
+import { SearchComponent } from './components/search/search.component';
+import { EditLabelsComponent } from './components/editLabels/editLabels.component';
 
 
 @NgModule({
   declarations: [
+    EditLabelsComponent,
+    NotesOfCertainLabelComponent,
+    SearchComponent,
+    TrashComponent,
+    ArchiveComponent,
+    RemindersComponent,
+    ViewNoteComponent,
     DashboardComponent,
     SetPasswordComponent,
     ForgotPasswordComponent,

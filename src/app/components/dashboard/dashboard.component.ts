@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { MatSnackBar, MatDialog } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
+import { MediaMatcher } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,13 +11,22 @@ import { BehaviorSubject } from 'rxjs';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  mobileQuery: MediaQueryList;
+  getLabels=[]
+  HeaderName = 'Fundoo'
   private obtainNotes = new BehaviorSubject([]);
   currentMessage = this.obtainNotes.asObservable();
-  constructor(private snackbar: MatSnackBar,
+  private _mobileQueryListener: () => void;
+  constructor(private snackbar: MatSnackBar,media: MediaMatcher,changeDetectorRef: ChangeDetectorRef,
     private route: ActivatedRoute, private router: Router, private formBuilder: FormBuilder,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog) {
+      this.mobileQuery = media.matchMedia('(max-width: 600px)');
+      this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+      this.mobileQuery.addListener(this._mobileQueryListener);
+     }
   appName: string;
   open: boolean;
+  isView:Boolean=true;
 
   search = new FormControl();
   message: string;
@@ -28,27 +38,18 @@ export class DashboardComponent implements OnInit {
     this.appName = "Note";
     this.router.navigate(['dashboard'])
   }
+  grid_list(){
+    this.isView = !this.isView;
+    console.log('view is ',this.isView);
+  }
 
   account() {
     this.open = true;
   }
-  onBlurMethod(){
+  onBlurAccount(){
     this.open = false;
   }
   data: []
-  // onsearch(message: any) {
-  //   console.log("on search")
-  //   this.noteservice.getRequest("serach?findString=" + message).subscribe(
-  //     (Response: any) => {
-  //       this.data = Response;
-  //       console.log(Response + "========>")
-  //       console.log(this.data)
-  //     }
-  //   )
-  // }
-  onnote() {
-    this.appName = "note"
-  }
 
   labelsDisplay = [];
 

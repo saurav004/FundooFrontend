@@ -1,43 +1,52 @@
-.example-container {
-    width: 500px;
-    height: 300px;
-    border: 1px solid rgba(0, 0, 0, 0.5);
-  }
-  
-  .example-sidenav-content {
-    display: flex;
-    height: 100px;
-   
-  }
-  .mat1{
-    width: 230px;
- margin-right: 103px;
-    z-index: 10;
-    float: right;
-    margin-bottom: -72px;
-}
+ mat-toolbar {
+   background-color: transparent;
+   margin-top: 10px;
+ }
 
-  .example-sidenav {
-    padding: 20px;
-    width: 300px;
-  }
+ h2#title {
+   padding-top: 6%;
+   margin-left: 25px;
+   font-family: 'Product Sans', Arial, sans-serif;
+   font-size: 22px;
+   color: #5f6368;
+   opacity: 1;
+   font-weight: 500;
+ }
 
- .notes .sidenav{
+ .example-container {
+   width: 500px;
+   height: 300px;
+   border: 1px solid rgba(0, 0, 0, 0.5);
+ }
+
+
+ .example-sidenav {
+   padding: 20px;
    width: 300px;
  }
-  mat-sidenav{
-    width: 290px;
-  }
-  .sidenav mat-icon{
-    margin-left: -196px;
-  }
-  .sidenavre mat-icon{
-   margin-left: -167px;
-  }
- .reminder .sidenavre{
-   width: 300px;
- }
- .sidenavbar{
+
+ .sidenavbar {
    width: 400px;
-   height:87vh;
+   height: 87vh;
  }
+
+
+ mat-list-item {
+   padding-left: 12px;
+   border-top-right-radius:  30px;
+   border-bottom-right-radius: 30px;;
+ }
+
+ mat-icon{
+   padding-right:20px;
+ }
+ 
+ mat-sidenav{
+  width: 280px;
+ }
+
+ .mat-nav-list .mat-list-item:focus,
+.mat-action-list .mat-list-item:focus,
+.mat-list-option:focus {
+  background:  #feefc3 !important;
+}

@@ -1,6 +1,6 @@
 .matcard{
     max-width: 700px;
-    max-height: 550px;
+    max-height: 560px;
     margin-left:auto;
     margin-right:auto;
     margin-top: 2vw;
@@ -10,7 +10,7 @@
 
 mat-form-field{
     margin: 8px;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 500;
 }
 
@@ -46,6 +46,6 @@ mat-error,mat-hint{
 }
 
 .showPassword{
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
