@@ -15,7 +15,7 @@ import { ViewNoteComponent } from './components/ViewNote/ViewNote.component';
 
 
 const routes: Routes = [
-  // { path: '', redirectTo:'login', pathMatch:'full'},
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'forgot_password', component: ForgotPasswordComponent },
@@ -23,14 +23,13 @@ const routes: Routes = [
   {
     path: "dashboard", component: DashboardComponent,
     children: [
-      { path: '', component: ViewNoteComponent },
       { path: 'home', component: ViewNoteComponent },
       { path: 'reminder', component: RemindersComponent },
       { path: 'archive', component: ArchiveComponent },
       { path: 'trash', component: TrashComponent },
       { path: 'search', component: SearchComponent },
       { path: 'label/:name', component: NotesOfCertainLabelComponent },
-      { path: 'edit_label', component: EditLabelsComponent}
+      { path: 'edit_label', component: EditLabelsComponent }
     ]
   }
 ];

@@ -1,9 +1,9 @@
-import { LoginService } from './../../services/login.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { LoginModel } from 'src/app/models/login';
 import { MatSnackBar } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
+import { HttpService } from 'src/app/services/http.service';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   email = new FormControl(this.login.email, [Validators.required, Validators.email]);
   password = new FormControl(this.login.password, [Validators.required, Validators.minLength(8), Validators.maxLength(15)]);
 
-  constructor(private loginService: LoginService,private _snackBar: MatSnackBar,private route: ActivatedRoute,private router: Router) { }
+  constructor(private httpService: HttpService,private _snackBar: MatSnackBar,private route: ActivatedRoute,private router: Router) { }
   hide: boolean = true;
   ngOnInit() {
     this.token=this.route.snapshot.paramMap.get('token');
@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
     console.log(this.login);
     this.token=localStorage.getItem("token")
 
-    this.loginService.loginAccount(this.login)
+    this.httpService.postRequest("user/login",this.login)
       .subscribe(
         (response:any)=>{
           if(response.id != null)

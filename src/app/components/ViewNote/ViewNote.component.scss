@@ -1,0 +1,102 @@
+#hover-show-content{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    cursor: pointer;
+    max-width: 350px;
+}
+.pin-class {
+    cursor: pointer;
+    float: right;
+    margin-bottom: -13%;
+    backface-visibility: hidden;
+
+    .pin-class>img {
+        background-color: #b5afaf75;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+    }
+}
+.note-pin{
+    color: transparent;
+}
+
+.unpin-container {
+    justify-content: flex-end;
+}
+.container {
+    justify-content: flex-end;
+    margin-bottom: 100px;
+}
+
+.one-note{
+    border-radius: 10px;
+    width: -webkit-fill-available;
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 752px;
+    margin: 0 auto 0 auto;
+
+    mat-card{
+        margin: 8px 2px 8px 8px;
+        padding: 2px 0 2px 0;
+    }
+}
+
+.note-title{
+    padding: 15px 5px 5px 8px;;
+    letter-spacing: .00625em;
+    font-family: 'Google Sans',Roboto,Arial,sans-serif;
+    font-size: 1rem;
+    font-weight: bold;
+    line-height: 1.5rem;
+    display: flex;
+}
+
+.note-content {
+    padding: 8px 5px 5px 8px;;
+    overflow-wrap: break-word;
+    letter-spacing: .01428571em;
+    font-family: Roboto,Arial,sans-serif;
+    font-size: .875rem;
+    font-weight: 400;
+    line-height: 1.25rem;
+}
+.label-content {
+    display: flex;
+    padding: 5px;
+    min-height: 30px;
+    color: #3c4043;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 11px;
+}
+
+.change-color{
+    display: grid;
+    padding: 0px 4px 0px 4px;
+    grid-template-columns: 25% 25% 25% 25%;
+}
+.change-color>button
+{
+    height: 26px;
+    width: 26px;
+    margin: 2px;
+}
+
+
+
+.ng-one-note-flex {
+    display: flex;
+    .note-card-class {
+        width: 238px;
+    }
+}
+.ng-one-note-grid {
+    display: grid;
+
+    .note-card-class {
+        width: auto;
+    }
+}

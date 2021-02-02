@@ -1,7 +1,6 @@
 import { ForgotPassword } from './../../models/forgot-password';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormBuilder, FormGroup, AbstractControl } from '@angular/forms';
-import { SetPasswordService } from 'src/app/services/setPassword.service';
 import { HttpService } from 'src/app/services/http.service';
 import { MatSnackBar } from '@angular/material';
 
@@ -15,7 +14,7 @@ export class ForgotPasswordComponent implements OnInit {
   email = new FormControl(this.forgotPasswordObject.email, [Validators.required, Validators.email]);
 
 
-  constructor(private fb: FormBuilder, private setPasswordService:SetPasswordService, private httpservice:HttpService,private _snackBar: MatSnackBar) {
+  constructor(private fb: FormBuilder, private httpservice:HttpService,private _snackBar: MatSnackBar) {
   }
 
   ngOnInit() {

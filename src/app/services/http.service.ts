@@ -15,11 +15,11 @@ export class HttpService {
   }
 
   public putRequestWithToken(url :any, data: any ):any{
-    return this.http.put(this.baseUrl + url,data,{ headers: new HttpHeaders().set('Authorization', localStorage.getItem('token')) });
+    return this.http.put(this.baseUrl + url+"?access_token="+localStorage.getItem("token"),data);  
   }
   public postRequestWithToken(url :any, data: any ):any{
-    return this.http.post(this.baseUrl + url,data,{ headers: new HttpHeaders().set('Authorization', localStorage.getItem('token')) });
-  }
+    return this.http.post(this.baseUrl + url+"?access_token="+localStorage.getItem("token"),data); 
+   }
 
   public deleteRequest(url :any):any{
     return this.http.delete(this.baseUrl + url);

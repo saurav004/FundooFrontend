@@ -1,9 +1,9 @@
+import { HttpService } from 'src/app/services/http.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
 import { Registeration } from 'src/app/models/Registeration';
-import { UserService } from 'src/app/services/user.service';
 
 
 @Component({
@@ -17,7 +17,7 @@ export class RegisterComponent implements OnInit {
   registration: Registeration = new Registeration();
   reactiveForm: FormGroup;
 
-  constructor(private _userService: UserService, private router: Router, private _snackBar: MatSnackBar, private fb: FormBuilder) { }
+  constructor(private httpService: HttpService, private router: Router, private _snackBar: MatSnackBar, private fb: FormBuilder) { }
 
   ngOnInit() {
     this.reactiveForm = this.fb.group({
@@ -70,7 +70,7 @@ export class RegisterComponent implements OnInit {
     this.registration.email = this.reactiveForm.value["email"];
     this.registration.password = this.reactiveForm.value["password"];
     console.log(this.registration)
-    this._userService.sinUp(this.registration)
+    this.httpService.postRequest("user/userSignUp",this.registration)
       .subscribe(
         data => {this.openSnackBar("Account successfully created", "Close");
         this.router.navigate(['/login']);

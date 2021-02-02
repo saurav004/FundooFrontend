@@ -3,7 +3,6 @@ import { HttpService } from 'src/app/services/http.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormBuilder, FormGroup, AbstractControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { SetPasswordService } from 'src/app/services/setPassword.service';
 import { MatSnackBar } from '@angular/material';
 
 @Component({
@@ -18,7 +17,7 @@ export class SetPasswordComponent implements OnInit {
   token: string;
   setPasswordObject: SetPassword = new SetPassword();
 
-  constructor(private fb: FormBuilder, private _snackBar: MatSnackBar, private httpService: HttpService, private setPasswordService: SetPasswordService, private router: Router, private route: ActivatedRoute) {
+  constructor(private fb: FormBuilder, private _snackBar: MatSnackBar, private httpService: HttpService, private router: Router, private route: ActivatedRoute) {
     this.passwordResetForm = this.fb.group({
       "email": [null, [Validators.required, Validators.email]],
       "password": [null, [Validators.required, Validators.minLength(8), Validators.maxLength(15)]],
@@ -72,7 +71,7 @@ export class SetPasswordComponent implements OnInit {
   onSubmit() {
     this.setPasswordObject.newPassword = this.passwordResetForm.controls.password.value;
     console.log(this.setPasswordObject.newPassword);
-    this.setPasswordService.setPassword("/user/reset-password", this.setPasswordObject).subscribe(
+    this.httpService.postRequestWithToken("/user/reset-password", this.setPasswordObject).subscribe(
       (response) => {
         console.log(response);
         this._snackBar.open(

@@ -1,13 +1,12 @@
  mat-toolbar {
    background-color: transparent;
-   margin-top: 10px;
+   padding: 15px 8px 8px 8px;
  }
 
  h2#title {
-   padding-top: 6%;
-   margin-left: 25px;
    font-family: 'Product Sans', Arial, sans-serif;
    font-size: 22px;
+   margin-right: 20px;
    color: #5f6368;
    opacity: 1;
    font-weight: 500;
@@ -33,20 +32,52 @@
 
  mat-list-item {
    padding-left: 12px;
-   border-top-right-radius:  30px;
-   border-bottom-right-radius: 30px;;
+   border: 1px solid transparent;
+   border-radius: 0 25px 25px 0;
+   user-select: none;
+   letter-spacing: .01785714em;
  }
 
- mat-icon{
-   padding-right:20px;
+ mat-form-field {
+   font-size: 2px;
  }
- 
- mat-sidenav{
-  width: 280px;
+
+ .search {
+   height: 44px;
+   background-color: rgb(241, 243, 244);
+   border: none transparent;
+   outline: none;
+ }
+
+ .search-button-icon {
+   padding: 8px;
+   margin: 0px 3px 3px 3px;
+ }
+
+ .mat-list-item-content {
+   width: 100%;
+ }
+
+ mat-icon {
+   padding-right: 20px;
+   font-size: 25px;
+ }
+
+ input {
+   font-size: 19px;
+   padding: 11px 0px;
+ }
+
+ img {
+   padding-right: 20px;
+ }
+
+ mat-sidenav {
+   width: 280px;
  }
 
  .mat-nav-list .mat-list-item:focus,
-.mat-action-list .mat-list-item:focus,
-.mat-list-option:focus {
-  background:  #feefc3 !important;
-}
+ .mat-action-list .mat-list-item:focus,
+ .mat-list-option:focus {
+   background: #feefc3 !important;
+ }

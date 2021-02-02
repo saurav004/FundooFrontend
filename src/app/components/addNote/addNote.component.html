@@ -1,0 +1,27 @@
+<div class="main" fxFlex=100 fxFlex.xs=100 fxLayout="row" fxLayoutAlign="center center"
+  fxLayoutAlign.xs="center center">
+  <mat-card (click)="isOpen=true" fxLayout="column" fxLayoutAlign="start start" fxLayoutAlign.xs="start center"
+    class="note-card" fxFlex=67 fxLayoutGap="15px" fxFlex.md=75 fxFlex.sm=75 fxFlex.xs=100>
+    <div *ngIf='isOpen==true' class="title">
+      <input matInput type="text" style="padding:10px;font-size: 20px;" [formControl]="title" placeholder="Title">
+    </div>
+    <div fxFlex fxLayout=row fxLayoutGap="15px">
+        <textarea  style="padding:10px;font-size: 20px;"matInput cdkTextareaAutosize [formControl]="description" placeholder="Take a note.."></textarea>
+      <button mat-icon-button>
+        <img src="../../../assets/outline_check_box_black_24dp.png">
+      </button>
+      <button mat-icon-button>
+        <img src="../../../assets/outline_brush_black_24dp.png">
+      </button>
+      <button mat-icon-button>
+        <img src="../../../assets/outline_insert_photo_black_24dp.png">
+      </button>
+    </div>
+    <div *ngIf="isOpen" fxFlex>
+      <div>
+        <button mat-button type="text" (click)="blurred()" fxLayoutAlign="end">Close</button>
+      </div>
+    </div>
+  </mat-card>
+
+</div>
