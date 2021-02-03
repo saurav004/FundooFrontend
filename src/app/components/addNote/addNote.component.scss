@@ -1,34 +1,22 @@
-$border-color: #92968e;
-
 .container {
-    display: flex;
-    justify-content: center;
-    margin: 2vw 0 2vw 0;
-}
-
-.create-note-button{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 30px;
-    width: 50%;
-    max-width: 50%;
-    padding: 8px;
-    // border: $border-color 1px solid;
-    border-radius: 6px;
-    box-shadow: 0 0px 0px 1px rgba(0,0,0,.2), 0 2px 2px 0 rgba(24, 20, 19, 0), 0 5px 2px 0 rgba(0,0,0,.12)
-}
-
-.create-note-menu{
-    place-self: center;
-}
-
-.main{
-    margin:10px;
+    margin: 3vw;
 }
 
 mat-card{
-    max-width:560px;
-    height:fit-content;
+    padding:6px 16px 0px 16px;
+    max-width: 600px;
+    // box-shadow: 5px 5px 5px 5px;
 }
 
+
+.change-color{
+    display: grid;
+    padding: 0px 4px 0px 4px;
+    grid-template-columns: 25% 25% 25% 25%;
+}
+.change-color>button
+{
+    height: 26px;
+    width: 26px;
+    margin: 2px;
+}

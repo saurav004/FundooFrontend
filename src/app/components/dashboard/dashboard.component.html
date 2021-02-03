@@ -13,7 +13,7 @@
         <h2 id="title">{{appName}}</h2>
       </div>
     </div>
-    <form role="search" fxFlex=55 fxFlex.sm=35 fxFlex.md=50 fxFlex.xs=75 fxLayoutAlign="center center" fxLayoutGap=10px>
+    <form role="search" fxFlex=55 fxFlex.sm=75 fxFlex.md=75 fxFlex.xs=75 fxLayoutAlign="center center">
       <mat-form-field class="search" appearance="outline" fxFlex=100 class="search">
         <button mat-icon-button class="search-button">
           <mat-icon matTooltip="Search" class="search-button-icon">search</mat-icon>
@@ -26,7 +26,7 @@
       </mat-form-field>
     </form>
     <div fxLayout="row" fxLayoutGap=10px fxFlexOffset=230px>
-      <div class="grid-list" fxFlex.md=5 fxFlex.sm=20 fxFlex.xs=4>
+      <div class="grid-list" fxFlex=30 fxFlex.lg=30 fxFlex.md=30 fxFlex.sm=30 fxFlex.xs=30>
         <button mat-icon-button *ngIf='isView' (click)="grid_list()">
           <img style="width:24px;height:24px;" src="../../../assets/svg/view_agenda-black-18dp.svg">
         </button>
@@ -36,7 +36,7 @@
       </div>
       <div fxFlex.md=5 fxFlex.sm=20 fxFlex.xs=4 fxLayoutAlign=end>
         <button mat-button mat-icon-button (click)="account()" fxShow="true">
-          <img style="width:24px;height:24px;" src="../../../assets/avatar.svg">
+          <img style="width:24px;height:24px;" src="../../../assets/svg/avatar.svg">
         </button>
       </div>
       <!-- <div fxFlex=10 fxFlex.md=18 fxFlex.sm=12 fxFlex.xs=15 fxLayoutAlign="end center">

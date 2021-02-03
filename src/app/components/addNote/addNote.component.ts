@@ -38,4 +38,9 @@ export class AddNoteComponent implements OnInit {
   blurred(){
     this.isOpen=false;
   }
+
+  showHideButton() {
+    this.showNoteContent = this.showNoteContent ? false : true;
+
+}
 }

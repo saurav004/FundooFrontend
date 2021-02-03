@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { BreakPointRegistry, FlexLayoutModule, FlexStyleBuilder, LayoutAlignStyleBuilder, LayoutGapStyleBuilder, LayoutStyleBuilder, MediaMarshaller, PrintHook, StylesheetMap, StyleUtils, ɵMatchMedia } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule, FormGroup } from '@angular/forms';
-import { MatInputModule, MatButtonModule, MatMenuModule, MatToolbarModule, MatIconModule, MatFormFieldModule, MatCardModule, MatSidenavModule, MatListModule, MatDialogModule } from '@angular/material';
+import { MatInputModule,MatTooltipModule, MatButtonModule, MatMenuModule, MatToolbarModule, MatIconModule, MatFormFieldModule, MatCardModule, MatSidenavModule, MatListModule, MatDialogModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { HttpClientModule } from '@angular/common/http';
@@ -45,6 +45,7 @@ import { AddNoteComponent } from './components/addNote/addNote.component';
     
   ],
   imports: [
+    MatTooltipModule,
     MatListModule,
     MatSidenavModule,
     MatMenuModule,
