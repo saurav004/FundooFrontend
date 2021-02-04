@@ -1,6 +1,6 @@
 <mat-toolbar>
   <div fxLayout="row" fxFlex fxLayoutAlign="start space-evenly">
-    <div fxLayout="row" fxLayoutGap=15px fxLayoutAlign="center center">
+    <div fxLayout="row" fxLayoutGap=15 fxLayoutAlign="center center">
       <div>
         <button mat-icon-button (click)="sidenav.toggle()" fxShow="true">
           <mat-icon matTooltip="menu">menu</mat-icon>
@@ -46,7 +46,7 @@
             <div class="profile-image" style="border-radius: 100%;">
               <img mat-card-avatar style="height: 70px;width: 70px;" [src]="" alt="avatar">
             </div>
-            <div class="datails" >
+            <div class="details" >
               <mat-card-title style="font-size:14px;font-family: Roboto,Arial,sans-serif;">username
               </mat-card-title>
               <mat-card-title style="font-size:14px;font-family: Roboto,Arial,sans-serif;">email
@@ -102,7 +102,7 @@
       </mat-list-item>
     </mat-nav-list>
   </mat-sidenav>
-  <mat-sidenav-content class=content>
+  <mat-sidenav-content class="content">
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>

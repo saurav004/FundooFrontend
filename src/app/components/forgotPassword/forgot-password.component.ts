@@ -1,4 +1,4 @@
-import { ForgotPassword } from './../../models/forgot-password';
+import { ForgotPassword } from '../../models/forgot-password';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormBuilder, FormGroup, AbstractControl } from '@angular/forms';
 import { HttpService } from 'src/app/services/http.service';
@@ -7,7 +7,7 @@ import { MatSnackBar } from '@angular/material';
 @Component({
   selector: 'app-forgot-password',
   templateUrl: './forgot-password.component.html',
-  styleUrls: ['./forgot-password.component.css']
+  styleUrls: ['./forgot-password.component.scss']
 })
 export class ForgotPasswordComponent implements OnInit {
   forgotPasswordObject : ForgotPassword = new ForgotPassword();

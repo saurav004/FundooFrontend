@@ -12,10 +12,9 @@ import { RegisterComponent } from './components/register/register.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { TitleComponent } from './components/title/title.component';
-import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
-import { SetPasswordComponent } from './components/set-password/set-password.component';
+import { ForgotPasswordComponent } from './components/forgotPassword/forgot-password.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { ViewNoteComponent } from './components/ViewNote/ViewNote.component';
+import { ViewNoteComponent } from './components/viewNote/ViewNote.component';
 import { RemindersComponent } from './components/reminders/reminders.component';
 import { ArchiveComponent } from './components/archive/archive.component';
 import { TrashComponent } from './components/trash/trash.component';
@@ -23,6 +22,7 @@ import { NotesOfCertainLabelComponent } from './components/notesOfCertainLabel/n
 import { SearchComponent } from './components/search/search.component';
 import { EditLabelsComponent } from './components/editLabels/editLabels.component';
 import { AddNoteComponent } from './components/addNote/addNote.component';
+import { SetPasswordComponent } from './components/setPassword/set-password.component';
 
 
 @NgModule({

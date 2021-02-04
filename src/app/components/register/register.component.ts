@@ -9,7 +9,7 @@ import { Registeration } from 'src/app/models/Registeration';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
   showPassword = false;

@@ -1,14 +1,14 @@
-import { SetPassword } from 'src/app/models/setPassword';
-import { HttpService } from 'src/app/services/http.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormBuilder, FormGroup, AbstractControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
+import { SetPassword } from 'src/app/models/setPassword';
+import { HttpService } from 'src/app/services/http.service';
 
 @Component({
   selector: 'app-set-password',
   templateUrl: './set-password.component.html',
-  styleUrls: ['./set-password.component.css']
+  styleUrls: ['./set-password.component.scss']
 })
 export class SetPasswordComponent implements OnInit {
   showPassword = false;

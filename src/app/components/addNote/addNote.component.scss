@@ -2,12 +2,16 @@
     margin: 3vw;
 }
 
+textarea {
+    font-size: 1.5em;
+}
+
 mat-card{
     padding:6px 16px 0px 16px;
     max-width: 600px;
+    display:flex;
     // box-shadow: 5px 5px 5px 5px;
 }
-
 
 .change-color{
     display: grid;

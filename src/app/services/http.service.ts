@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class HttpService {
-
+  token = localStorage.getItem('token');
   baseUrl = environment.baseUrl;
   constructor(private http: HttpClient) { }
 
@@ -15,10 +15,10 @@ export class HttpService {
   }
 
   public putRequestWithToken(url :any, data: any ):any{
-    return this.http.put(this.baseUrl + url+"?access_token="+localStorage.getItem("token"),data);  
+    return this.http.put(this.baseUrl + url+"?access_token="+this.token,data);  
   }
   public postRequestWithToken(url :any, data: any ):any{
-    return this.http.post(this.baseUrl + url+"?access_token="+localStorage.getItem("token"),data); 
+    return this.http.post(this.baseUrl + url+"?access_token="+this.token,data); 
    }
 
   public deleteRequest(url :any):any{

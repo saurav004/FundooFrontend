@@ -3,15 +3,15 @@ import { Routes, RouterModule } from '@angular/router';
 import { ArchiveComponent } from './components/archive/archive.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { EditLabelsComponent } from './components/editLabels/editLabels.component';
-import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { ForgotPasswordComponent } from './components/forgotPassword/forgot-password.component';
 import { LoginComponent } from './components/login/login.component';
 import { NotesOfCertainLabelComponent } from './components/notesOfCertainLabel/notesOfCertainLabel.component';
 import { RegisterComponent } from './components/register/register.component';
 import { RemindersComponent } from './components/reminders/reminders.component';
 import { SearchComponent } from './components/search/search.component';
-import { SetPasswordComponent } from './components/set-password/set-password.component';
+import { SetPasswordComponent } from './components/setPassword/set-password.component';
 import { TrashComponent } from './components/trash/trash.component';
-import { ViewNoteComponent } from './components/ViewNote/ViewNote.component';
+import { ViewNoteComponent } from './components/viewNote/ViewNote.component';
 
 
 const routes: Routes = [

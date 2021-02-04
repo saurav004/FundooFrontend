@@ -1,26 +1,36 @@
 <div fxFlex=100 fxFlex.xs=100 fxFlex.lg=100 fxFlex.md=100 fxLayout="row" fxLayoutAlign="center center">
-  <mat-card fxFlex=60 class="container" (click)="isOpen=true" (blur)="isOpen=false">
-    <div fxFlex=100 fxFlex.xs=100 fxLayout="column" fxLayoutAlign="space around start">
-      <div *ngIf="isOpen" class="title">
-        <input matInput type="text" style="padding:10px 0px;font-size: 21px;" [formControl]="title" placeholder="Title">
+  <mat-card class="container" fxFlex=60 *ngIf="!showNoteContent">
+    <textarea (click)="showNoteContent=true" 
+      matInput cdkTextareaAutosize [formControl]="description" placeholder="Take a note.."></textarea>
+      <button *ngIf="!showNoteContent" matTooltip="New list" mat-icon-button>
+        <img src="../../../assets/outline_check_box_black_24dp.png">
+      </button>
+      <button *ngIf="!showNoteContent" matTooltip="New note with drawing" mat-icon-button>
+        <img src="../../../assets/outline_brush_black_24dp.png">
+      </button>
+      <button *ngIf="!showNoteContent" matTooltip="New note with image" mat-icon-button>
+        <img src="../../../assets/outline_insert_photo_black_24dp.png">
+      </button>
+  </mat-card>
+  <mat-card *ngIf="showNoteContent" fxFlex=60 class="container">
+    <div fxFlex=100 fxFlex.xs=100 fxLayout="column" fxLayoutGap=5% fxLayoutAlign="space around start">
+      <div *ngIf="showNoteContent" class="title">
+        <input matInput type="text" style="font-size: 21px;" [formControl]="title" placeholder="Title">
       </div>
       <div fxFlex=100 fxLayout=row fxLayoutGap="15px">
-        <textarea style="font-size: 21px;padding: 10px 0px 0px 0px;margin: 5px 0px 0px 0px;" matInput
+        <textarea matInput
           cdkTextareaAutosize [formControl]="description" placeholder="Take a note.."></textarea>
-        <button *ngIf="!isOpen" matTooltip="New list" mat-icon-button>
+        <button *ngIf="!showNoteContent" matTooltip="New list" mat-icon-button>
           <img src="../../../assets/outline_check_box_black_24dp.png">
         </button>
-        <button *ngIf="!isOpen" matTooltip="New note with drawing" mat-icon-button>
+        <button *ngIf="!showNoteContent" matTooltip="New note with drawing" mat-icon-button>
           <img src="../../../assets/outline_brush_black_24dp.png">
         </button>
-        <button *ngIf="!isOpen" matTooltip="New note with image" mat-icon-button>
+        <button *ngIf="!showNoteContent" matTooltip="New note with image" mat-icon-button>
           <img src="../../../assets/outline_insert_photo_black_24dp.png">
         </button>
       </div>
-      <div *ngIf="isOpen" fxLayoutAlign="end">
-        <button mat-button (click)="isOpen=false">Close</button>
-      </div>
-      <div *ngIf="isOpen" class="create-note-toolbar" fxLayout="row" fxLayoutAlign="space-between center">
+      <div *ngIf="showNoteContent" class="create-note-toolbar" fxLayout="row" fxLayoutAlign="space-between center">
         <div class="create-note-menu" fxLayout="row" fxLaoutAline="space-between center" fxLayoutGap="14%">
           <span matTooltip="reminder" [matMenuTriggerFor]="matMenuReminder">
             <mat-icon> <img src="../../../assets/outline_add_alert_black_24dp.png">
@@ -53,7 +63,7 @@
             <mat-icon matTooltip="redo">redo</mat-icon>
           </span>
         </div>
-        <div *ngIf="!showNoteContent">
+        <div>
           <button mat-button (click)="showHideButton()">Close</button>
         </div>
       </div>
