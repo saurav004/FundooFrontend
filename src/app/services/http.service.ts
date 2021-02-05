@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -25,9 +26,13 @@ export class HttpService {
     return this.http.delete(this.baseUrl + url);
   }
 
-  public getRequest(url :any):any{
+  public getRequest(url :string):Observable<any>{
   return this.http.get(this.baseUrl + url);
   }
+
+  public getRequestWithToken(url :any):any{
+    return this.http.get(this.baseUrl + url+"?access_token="+this.token);
+    }
 
   public putRequest(url,data){
   return this.http.put(this.baseUrl + url,data);

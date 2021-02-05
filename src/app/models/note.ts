@@ -1,17 +1,12 @@
 export class Note {
-    file: any
-
-    title: any
-
-    description: any
-
-
-    labelIdList: any
-
-    checklist: any
-    isPined: any
-    isArchived: any
-    color: any
-    reminder: any
-    collaberators: any
+    file: string;
+    title: string;
+    description: string;
+    labelIdList: string;
+    checklist: string;
+    isPined: boolean;
+    isArchived: boolean;
+    color: string;
+    reminder: string;
+    collaberators: any;
 }

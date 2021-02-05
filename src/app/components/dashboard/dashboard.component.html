@@ -1,6 +1,6 @@
 <mat-toolbar>
   <div fxLayout="row" fxFlex fxLayoutAlign="start space-evenly">
-    <div fxLayout="row" fxLayoutGap=15 fxLayoutAlign="center center">
+    <div fxLayout="row" fxLayoutGap=5% fxLayoutAlign="center center" fxFlexOffset=2%>
       <div>
         <button mat-icon-button (click)="sidenav.toggle()" fxShow="true">
           <mat-icon matTooltip="menu">menu</mat-icon>
@@ -13,7 +13,7 @@
         <h2 id="title">{{appName}}</h2>
       </div>
     </div>
-    <form role="search" fxFlex=55 fxFlex.sm=75 fxFlex.md=75 fxFlex.xs=75 fxLayoutAlign="center center">
+    <form role="search" fxFlex=55 fxFlex.sm=75 fxFlex.md=75 fxFlex.xs=75 fxFlexOffset=6% fxLayoutAlign="center">
       <mat-form-field class="search" appearance="outline" fxFlex=100 class="search">
         <button mat-icon-button class="search-button">
           <mat-icon matTooltip="Search" class="search-button-icon">search</mat-icon>
@@ -25,7 +25,7 @@
         </button>
       </mat-form-field>
     </form>
-    <div fxLayout="row" fxLayoutGap=10px fxFlexOffset=230px>
+    <div fxLayout="row" fxFlex=10 fxLayoutGap=20% fxFlexOffset=10%>
       <div class="grid-list" fxFlex=30 fxFlex.lg=30 fxFlex.md=30 fxFlex.sm=30 fxFlex.xs=30>
         <button mat-icon-button *ngIf='isView' (click)="grid_list()">
           <img style="width:24px;height:24px;" src="../../../assets/svg/view_agenda-black-18dp.svg">

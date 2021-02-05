@@ -1,4 +1,4 @@
-import { ForgotPassword } from '../../models/forgot-password';
+import { ForgotPassword } from '../../models/forgotPassword';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormBuilder, FormGroup, AbstractControl } from '@angular/forms';
 import { HttpService } from 'src/app/services/http.service';
@@ -19,6 +19,7 @@ export class ForgotPasswordComponent implements OnInit {
 
   ngOnInit() {
   }
+  
   emailValidation() {
     return this.email.hasError('required') ? 'Enter email' :
       this.email.hasError('email') ? 'Not a valid email' : '';

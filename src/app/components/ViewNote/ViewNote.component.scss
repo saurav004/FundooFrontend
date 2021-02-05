@@ -32,6 +32,7 @@
 
 .one-note{
     border-radius: 10px;
+    justify-content: center;
     width: -webkit-fill-available;
     display: flex;
     flex-wrap: wrap;
@@ -85,12 +86,79 @@
     margin: 2px;
 }
 
+@media only screen and (max-width: 1100px) {
+    .one-note{
+        border-radius: 10px;
+        justify-content: center;
+        width: -webkit-fill-available;
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 504px;
+        margin: 0 auto 0 auto;
 
+        mat-card{
+            margin-left: 8px;
+            padding-left: 0px;
+            margin-right: 0px;
+            padding-right: 0px;
+        }
+    }
+  }
+
+@media only screen and (max-width: 1024px) {
+    .one-note{
+        border-radius: 10px;
+        justify-content: center;
+        width: -webkit-fill-available;
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 752px;
+        margin: 0 auto 0 auto;
+        mat-card{
+            margin-left: 8px;
+            padding-left: 0px;
+            margin-right: 0px;
+            padding-right: 0px;
+        }
+    }
+  }
+
+@media only screen and (max-width: 835px) {
+    .one-note{
+        border-radius: 10px;
+        justify-content: center;
+        width: -webkit-fill-available;
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 504px;
+        margin: 0 auto 0 auto;
+        
+        mat-card{
+            margin-left: 8px;
+            padding-left: 0px;
+            margin-right: 0px;
+            padding-right: 0px;
+        }
+    }
+  }
+
+@media only screen and (max-width: 599px) {
+    .one-note{
+        border-radius: 10px;
+        display: block;
+        max-width: unset;
+        mat-card{
+            margin: 0.5rem 0.05rem;
+            padding: 0.05rem;
+            width: auto;
+        }
+    }
+  }
 
 .ng-one-note-flex {
     display: flex;
     .note-card-class {
-        width: 250px;
+        width: 238px;
     }
 }
 .ng-one-note-grid {

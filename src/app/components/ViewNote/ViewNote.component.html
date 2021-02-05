@@ -1,24 +1,26 @@
   <app-addNote></app-addNote>
   <div class="unpin-container">
     <div class="one-note" [ngClass]="{'ng-one-note-grid': viewListGrid, 'ng-one-note-flex': !viewListGrid }">
-      <div class="notes-container">
+      <div class="notes-container" *ngFor="let note of getNote?.reverse()">
         <mat-card class="note-card-class">
           <div class="pin-class">
+            <button mat-button mat-icon-button>
             <span matTooltip="pin note">
               <img src="../../../assets/outline_push_pin_black_24dp.png">
             </span>
+          </button>
           </div>
           <div>
-            <div class="note-title">title</div>
-            <div class="note-content"> content</div>
+            <div class="note-title">{{note.title}}</div>
+            <div class="note-content">{{note.description}}</div>
             <div class="label-content" fxLayoutGap="10px">
               <div style="display: flex;flex-direction: row;height: fit-content;flex-wrap: wrap;">
-                <span class="chip"
-                  style="background-color: rgba(255,255,255,.4);border-radius: 10px;padding: 5px;height: fit-content;align-self: center;">
-                  <div>{{reminderData}}</div>
-                </span>
                 <div class="chip"
-                  style="padding: 5px;background-color: #bbc7c7;margin-left: 5%;margin-top: 5%;border-radius: 10px 10px 10px 10px;height: min-content;">
+                  style="background-color: rgba(255, 255, 255, 0.39);border-radius: 10px;padding: 5px;height: fit-content;align-self: center;">
+                  <div>{{reminderData}}</div>
+                </div>
+                <div class="chip"
+                  style="padding: 5px;background-color: #e5f0f0;margin-left: 5%;margin-top: 5%;border-radius: 10px 10px 10px 10px;height: min-content;">
                   label
                   <i matTooltip="Remove Label" class='material-icons close' style="vertical-align: middle; 
                                               color: rgba(0,0,0,.7);

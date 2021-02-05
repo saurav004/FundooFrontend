@@ -59,7 +59,6 @@ export class AddNoteComponent implements OnInit {
           },
           err => {
             // print if error occur during add note data  in database
-            console.log(err);
             this.snackBar.open('Error: Failed to store data on database')._dismissAfter(2500);
           }
         );

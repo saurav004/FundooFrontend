@@ -1,6 +1,8 @@
+import { HttpService } from 'src/app/services/http.service';
 import { DatePipe } from '@angular/common';
-import { Component, DoCheck, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatSnackBar } from '@angular/material';
+import { Note } from 'src/app/models/note';
 
 @Component({
   selector: 'app-ViewNote',
@@ -8,23 +10,23 @@ import { MatDialog, MatSnackBar } from '@angular/material';
   styleUrls: ['./ViewNote.component.scss'],
   providers: [DatePipe],
 })
-export class ViewNoteComponent implements OnInit, DoCheck {
+export class ViewNoteComponent implements OnInit {
    datetimereminder = new Date(Date.now());
 
    noteIdTemp: number;
    reminderData: string;
    gridListView = false;
-
+   getNote: Note[];
 
    viewListGrid: boolean=false;
 
 
-  ngDoCheck() {
-  }
+  
   constructor(public dialog: MatDialog,
-    private datePipe: DatePipe,) { }
+    private datePipe: DatePipe,private httpService:HttpService) { }
 
   ngOnInit() {
+    this.httpService.getRequestWithToken("notes/getNotesList").subscribe(response => {console.log(response);this.getNote = response.data.data;console.log(this.getNote)});
   }
   setPinNote(note) {
     const data = {

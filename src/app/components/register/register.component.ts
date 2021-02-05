@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
-import { Registeration } from 'src/app/models/Registeration';
+import { Registeration } from 'src/app/models/registeration';
 
 
 @Component({
