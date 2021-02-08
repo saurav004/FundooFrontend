@@ -11,8 +11,9 @@ mat-toolbar {
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow:0 1px 6px 0 rgb(32 33 36 / 28%);
-  height:auto;
+  box-shadow: inset 0 -1px 0 0 #dadce0;
+  height: auto;
+  transition: box-shadow 250ms;
 }
 
 h2#title {
@@ -92,6 +93,6 @@ mat-sidenav {
   background: #feefc3 !important;
 }
 
-mat-sidenav-content{
+mat-sidenav-content {
   background-color: #fff;
 }

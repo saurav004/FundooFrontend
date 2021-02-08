@@ -1,3 +1,5 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { HttpClientModule } from '@angular/common/http';
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async, inject } from '@angular/core/testing';
@@ -6,7 +8,8 @@ import { NotesService } from './notes.service';
 describe('Service: Notes', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [NotesService]
+      providers: [NotesService],
+      imports: [HttpClientModule,HttpClientTestingModule]
     });
   });
 

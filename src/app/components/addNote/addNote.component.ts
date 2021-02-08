@@ -19,7 +19,7 @@ export class AddNoteComponent implements OnInit {
   constructor(public router: Router, private snackBar: MatSnackBar,private httpService:HttpService) { }
   title = new FormControl('', [Validators.required])
   description = new FormControl('', [Validators.required])
-  setcolor;
+  setcolor:string;
   ngOnInit() {
   }
   @Output() refreshEvent = new EventEmitter<any>();

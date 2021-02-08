@@ -5,7 +5,7 @@
       Create Your Fundoo Account
     </h2>
   </mat-card-subtitle>
-  <form [formGroup]="reactiveForm" autocomplete="off" novalidate fxLayout="column wrap" fxLayoutAlign="center"
+  <form [formGroup]="reactiveForm" (ngSubmit)="register()" autocomplete="off" novalidate fxLayout="column wrap" fxLayoutAlign="center"
     fxLayoutGap="10px">
     <div class="flex-container" fxLayout="row" fxLayoutGap="10px">
       <div>
@@ -63,7 +63,7 @@
         </div>
         <div>
           <a routerLink='/login'>Sign In instead</a>
-          <button mat-raised-button type="submit" style="float:right;" (click)="register()"
+          <button mat-raised-button type="submit" style="float:right;" id="submitButton"
             [disabled]="reactiveForm.get('firstName').invalid || reactiveForm.get('lastName').invalid || reactiveForm.get('email').invalid || reactiveForm.get('password').invalid"
             color="primary">register</button>
         </div>
