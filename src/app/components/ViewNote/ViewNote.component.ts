@@ -1,8 +1,10 @@
+import { DataService } from 'src/app/services/data.service';
 import { HttpService } from 'src/app/services/http.service';
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { Note } from 'src/app/models/note';
+import { Label } from 'src/app/models/label';
 
 @Component({
   selector: 'app-ViewNote',
@@ -12,121 +14,72 @@ import { Note } from 'src/app/models/note';
 })
 export class ViewNoteComponent implements OnInit {
    datetimereminder = new Date(Date.now());
-
+   private allLabels: Label[];
    noteIdTemp: number;
    reminderData: string;
    gridListView = false;
    getNote: Note[];
 
-   viewListGrid: boolean=false;
+   GridListView: boolean=false;
+   viewListGrid: boolean;
 
 
   
-  constructor(public dialog: MatDialog,
+  constructor(public dialog: MatDialog,private dataService: DataService,
     private datePipe: DatePipe,private httpService:HttpService) { }
 
   ngOnInit() {
-    this.httpService.getRequestWithToken("notes/getNotesList").subscribe(response => {console.log(response);this.getNote = response.data.data;console.log(this.getNote)});
+    this.dataService.noteMessage.subscribe(notes => this.getNote = notes);
   }
   setPinNote(note) {
     const data = {
-      dataForUpdate: {is_pin: !note.is_pin},
-      urlCridetial: note,
-      showMessage: ''
+      dataForUpdate: {isPined: !note.isPined},
     };
 
   }
   setReminder(note) {
-    const data = {
-      dataForUpdate: {reminder: this.datePipe.transform(this.datetimereminder.toISOString(), 'yyyy-MM-dd HH:mm:ss')},
-      urlCridetial: note,
-      showMessage: ''
-    };
+    
   }
 
   getReminder(reminder) {
-    if (reminder !== null && ((Date.parse(reminder) / 1000) - (Date.now() / 1000)) > 0) {
-      this.reminderData =  this.datePipe.transform(reminder, 'd MMM hh:mm a  ');
-      return true;
-    }
-    return false;
+    
   }
 
 
   addedLabel(note, updatelabel) {
-    let noteLabels = note.label;
-    if (noteLabels.includes(updatelabel)) {
-      noteLabels = noteLabels.filter(label => label !== updatelabel);
-    } else {
-      noteLabels = noteLabels.concat([updatelabel]);
-    }
+    
   }
 
   removeLable(note, labelToDelete) {
-    let labelList = [...note.label];
-    labelList = labelList.filter(label => label !== labelToDelete);
-    const data = {
-      dataForUpdate: { label: labelList },
-      urlCridetial: note,
-      showMessage: ''
-    };
+    
   }
 
   addLabel(note, newLabel) {
-    const labelList = [...note.label];
-    labelList.push(newLabel);
-    const data = {
-      dataForUpdate: { label: labelList },
-      urlCridetial: note,
-      showMessage: ''
-    };
+    
   }
 
 
   moveTrash(note) {
-    const noteDetail = {
-      is_trashed: true
-    };
+    
   }
 
   noteColor(color) {
-    const style = {
-      'background-color': color,
-    };
-    return style;
+    
   }
 
   archiveNote(note) {
-    const noteDetail = {
-      is_archive: true
-    };
+    
   }
 
   changeColor(note, color) {
-    const noteDetail = {
-    change_color: color
-    };
-    const data = {
-      dataForUpdate: noteDetail,
-      urlCridetial: note,
-      showMessage: ''
-    };
-    // this.dataservice.updateNoteDetails(data);
+    
   }
   getFile(note) {
-    this.noteIdTemp = note;
-    document.getElementById('setNoteImage').click();
+    
   }
 
   onFileSelected(target) {
-    const noteImage = target.files[0];
-    const uploadData = new FormData();
-    uploadData.append('image', noteImage, noteImage.name);
-    const data = {
-      dataForUpdate: uploadData,
-      urlCridetial: this.noteIdTemp,
-      showMessage: 'Image added'
-    };
+   
   }
 
 

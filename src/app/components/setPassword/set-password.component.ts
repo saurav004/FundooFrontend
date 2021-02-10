@@ -41,7 +41,6 @@ export class SetPasswordComponent implements OnInit {
         this.passwordResetForm.controls.password.errors.minLength ? 'min 8 characters' : '';
   }
   getErrorConfirmPassword() {
-    console.log(this.passwordResetForm);
     return this.passwordResetForm.controls.confirmPassword.hasError('required') ? 'Enter Password' :
       this.passwordResetForm.controls.confirmPassword.hasError('passwordMismatch') ? 'Passwords do not match' : '';
   }
@@ -70,10 +69,8 @@ export class SetPasswordComponent implements OnInit {
   }
   onSubmit() {
     this.setPasswordObject.newPassword = this.passwordResetForm.controls.password.value;
-    console.log(this.setPasswordObject.newPassword);
     this.httpService.postRequestWithToken("/user/reset-password", this.setPasswordObject).subscribe(
       (response) => {
-        console.log(response);
         this._snackBar.open(
           "Password Successfully Set", "Close",
           { duration: 2500 }

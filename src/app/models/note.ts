@@ -9,4 +9,5 @@ export class Note {
     color: string;
     reminder: string;
     collaberators: any;
+    id:string;
 }

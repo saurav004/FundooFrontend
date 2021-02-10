@@ -10,6 +10,18 @@
   border-color: #e0e0e0;
   font-weight: bold;
 }
+.pin-class {
+  margin:0;
+  cursor: pointer;
+  float: right;
+
+  .pin-class>img {
+      background-color: #b5afaf75;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+  }
+}
 
 textarea {
   font-size: 1.5em;

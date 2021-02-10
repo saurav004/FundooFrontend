@@ -28,7 +28,6 @@ export class LoginComponent implements OnInit {
   }
 
   LoginMethod() {
-    console.log(this.login);
     this.token=localStorage.getItem("token")
 
     this.httpService.postRequest("user/login",this.login)
@@ -44,7 +43,7 @@ export class LoginComponent implements OnInit {
               
                { duration: 2500 }
            )
-           this.router.navigate(['/dashboard']);
+           this.router.navigate(['/dashboard/home']);
           }else {
            this._snackBar.open(
              "Login Failed",

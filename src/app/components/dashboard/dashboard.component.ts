@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 import { MediaMatcher } from '@angular/cdk/layout';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,12 +12,15 @@ import { MediaMatcher } from '@angular/cdk/layout';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+  public viewListGridMessage = false; // parent to child communication
+
+  isPristine = true;
   mobileQuery: MediaQueryList;
   getLabels = []
   HeaderName = 'Fundoo';
   search:any=null;
 
-  constructor(private snackbar: MatSnackBar, media: MediaMatcher, changeDetectorRef: ChangeDetectorRef,
+  constructor(private snackbar: MatSnackBar,private dataService: DataService, media: MediaMatcher, changeDetectorRef: ChangeDetectorRef,
     private route: ActivatedRoute, private router: Router, private formBuilder: FormBuilder,
     public dialog: MatDialog, private fb: FormBuilder) {
   }
@@ -27,15 +31,19 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.appName = "FundooNotes";
-    
   }
+
+  ngDoCheck() {
+      this.dataService.gridListView = this.viewListGridMessage;
+    }
+
   onNotes() {
     this.appName = "Note";
     this.router.navigate(['dashboard'])
   }
+
   grid_list() {
     this.isView = !this.isView;
-    console.log('view is ', this.isView);
   }
 
   account() {
@@ -46,6 +54,5 @@ export class DashboardComponent implements OnInit {
   }
   data: []
 
-  labelsDisplay = [{ "lableName": "Sachin" }, { "lableName": "Tendulkar" }, { "lableName": "Tendulkar" }
-    , { "lableName": "Tendulkar" }, { "lableName": "Tendulkar" }, { "lableName": "Tendulkar" }, { "lableName": "Tendulkar" }];
+  labelsDisplay = [{ "lableName": "label" }, { "lableName": "label" }, { "lableName": "label" }];
 }

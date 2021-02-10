@@ -25,11 +25,9 @@ export class ForgotPasswordComponent implements OnInit {
       this.email.hasError('email') ? 'Not a valid email' : '';
   }
   onSubmit(){
-    console.log(this.forgotPasswordObject);
     this.httpservice.postRequest("user/reset", this.forgotPasswordObject).subscribe(
       (response: any) => {
         if (response.success) {
-          console.log(response);
           this._snackBar.open(
             "Link sent", "close",
             { duration: 2500 }

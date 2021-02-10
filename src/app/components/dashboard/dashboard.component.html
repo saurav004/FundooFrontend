@@ -1,45 +1,46 @@
-<mat-toolbar>
-  <div fxLayout="row" fxFlex fxLayoutAlign="start space-evenly">
-    <div fxLayout="row" fxLayoutGap=5% fxLayoutAlign="center center" fxFlexOffset=2%>
-      <div>
-        <button mat-icon-button (click)="sidenav.toggle()" fxShow="true">
-          <mat-icon matTooltip="menu">menu</mat-icon>
-        </button>
+<div>
+  <mat-toolbar>
+    <div fxLayout="row" fxFlex fxLayoutAlign="start space-evenly">
+      <div fxLayout="row" fxLayoutGap=5% fxLayoutAlign="center center" fxFlexOffset=2%>
+        <div>
+          <button mat-icon-button (click)="sidenav.toggle()" fxShow="true">
+            <mat-icon matTooltip="menu">menu</mat-icon>
+          </button>
+        </div>
+        <div>
+          <img height="45" width="45" src="../../../assets/keep_2020q4_48dp.png">
+        </div>
+        <div>
+          <h2 id="title">{{appName}}</h2>
+        </div>
       </div>
-      <div>
-        <img height="45" width="45" src="../../../assets/keep_2020q4_48dp.png">
-      </div>
-      <div>
-        <h2 id="title">{{appName}}</h2>
-      </div>
-    </div>
-    <form role="search" fxFlex=55 fxFlex.sm=75 fxFlex.md=75 fxFlex.xs=75 fxFlexOffset=6% fxLayoutAlign="center">
-      <mat-form-field class="search" appearance="outline" fxFlex=100 class="search">
-        <button mat-icon-button class="search-button">
-          <mat-icon matTooltip="Search" class="search-button-icon">search</mat-icon>
-        </button>
-        <input type="search" [(ngModel)]="search" name="search" fxFlex="100" matInput placeholder="Search"
-          class="search-window" autocomplete="off" />
-        <button *ngIf="search" class="clear-button" mat-icon-button (click)="search=''">
-          <mat-icon>close</mat-icon>
-        </button>
-      </mat-form-field>
-    </form>
-    <div fxLayout="row" fxFlex=10 fxLayoutGap=20% fxFlexOffset=10%>
-      <div class="grid-list" fxFlex=30 fxFlex.lg=30 fxFlex.md=30 fxFlex.sm=30 fxFlex.xs=30>
-        <button mat-icon-button *ngIf='isView' (click)="grid_list()">
-          <img style="width:24px;height:24px;" src="../../../assets/svg/view_agenda-black-18dp.svg">
-        </button>
-        <button mat-icon-button *ngIf='!isView' (click)="grid_list()">
-          <mat-icon>grid_view</mat-icon>
-        </button>
-      </div>
-      <div fxFlex.md=5 fxFlex.sm=20 fxFlex.xs=4 fxLayoutAlign=end>
-        <button mat-button mat-icon-button (click)="account()" fxShow="true">
-          <img style="width:24px;height:24px;" src="../../../assets/svg/avatar.svg">
-        </button>
-      </div>
-      <!-- <div fxFlex=10 fxFlex.md=18 fxFlex.sm=12 fxFlex.xs=15 fxLayoutAlign="end center">
+      <form role="search" fxFlex=55 fxFlex.sm=75 fxFlex.md=75 fxFlex.xs=75 fxFlexOffset=6% fxLayoutAlign="center">
+        <mat-form-field class="search" appearance="outline" fxFlex=100 class="search">
+          <button mat-icon-button class="search-button">
+            <mat-icon matTooltip="Search" class="search-button-icon">search</mat-icon>
+          </button>
+          <input type="search" [(ngModel)]="search" name="search" fxFlex="100" matInput placeholder="Search"
+            class="search-window" autocomplete="off" />
+          <button *ngIf="search" class="clear-button" mat-icon-button (click)="search=''">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+      </form>
+      <div fxLayout="row" fxFlex=10 fxLayoutGap=20% fxFlexOffset=10%>
+        <div class="grid-list" fxFlex=30 fxFlex.lg=30 fxFlex.md=30 fxFlex.sm=30 fxFlex.xs=30>
+          <button mat-icon-button *ngIf='isView' (click)="grid_list()">
+            <img style="width:24px;height:24px;" src="../../../assets/svg/view_agenda-black-18dp.svg">
+          </button>
+          <button mat-icon-button *ngIf='!isView' (click)="grid_list()">
+            <mat-icon>grid_view</mat-icon>
+          </button>
+        </div>
+        <div fxFlex.md=5 fxFlex.sm=20 fxFlex.xs=4 fxLayoutAlign=end>
+          <button mat-button mat-icon-button (click)="account()" fxShow="true">
+            <img style="width:24px;height:24px;" src="../../../assets/svg/avatar.svg">
+          </button>
+        </div>
+        <!-- <div fxFlex=10 fxFlex.md=18 fxFlex.sm=12 fxFlex.xs=15 fxLayoutAlign="end center">
         <img mat-card-avatar [matMenuTriggerFor]="menu" [src]="" alt="avatar">
         <mat-menu #menu="matMenu">
           <div fxLayout="row" fxLayoutGap="15px">
@@ -60,49 +61,50 @@
           </div>
         </mat-menu>
       </div> -->
-    </div>
-  </div>
-</mat-toolbar>
-<div>
-  <mat-card class="mat1" *ngIf="open">
-    <div fxLayout="column" fxLayout="row" fxLayoutGap="120px">
-      <button mat-icon-button color="primary" routerLink='/register'>Add Account</button>
-      <button mat-icon-button color="primary" routerLink='/login'>SignOut</button><br>
-    </div>
-  </mat-card>
-</div>
-<mat-sidenav-container fxFlexFill class="sidenavbar">
-  <mat-sidenav #sidenav mode='side'>
-    <mat-nav-list fxLayout="column" fxFlex="100">
-      <mat-list-item disableRipple routerLink="home" [routerLinkActive]="['is-active']" class="notes">
-        <mat-icon class="nav_icon" matTooltip="Create Notes">lightbulb_outline</mat-icon>
-        Notes
-      </mat-list-item>
-      <mat-list-item disableRipple routerLink="reminder" [routerLinkActive]="['is-active']" class="reminder">
-        <mat-icon class="nav_icon" matTooltip="Create Reminder">notifications_none</mat-icon> Reminder
-      </mat-list-item>
-      <div fxLayout="column">
-        <div *ngFor="let data of labelsDisplay">
-          <mat-list-item disableRipple routerLink="label/:data" [routerLinkActive]="['is-active']" name="data"
-            class="showlabel" mat-button>
-            <img src="../../../assets/svg/label-black-24dp.svg">
-            {{data.lableName}}
-            <br>
-          </mat-list-item>
-        </div>
       </div>
-      <mat-list-item disableRipple routerLink="edit_label" [routerLinkActive]="['is-active']" class="notes">
-        <img src="../../../assets/svg/edit.svg"> Edit Labels
-      </mat-list-item>
-      <mat-list-item disableRipple routerLink="archive" [routerLinkActive]="['is-active']" class="notes">
-        <img src="../../../assets/svg/archive.svg"> Archive
-      </mat-list-item>
-      <mat-list-item disableRipple routerLink="trash" [routerLinkActive]="['is-active']" class="notes">
-        <img mat-icon src="../../../assets/svg/delete.svg"> Trash
-      </mat-list-item>
-    </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content class="content">
-    <router-outlet></router-outlet>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+    </div>
+  </mat-toolbar>
+  <div>
+    <mat-card class="mat1" *ngIf="open">
+      <div fxLayout="column" fxLayout="row" fxLayoutGap="120px">
+        <button mat-icon-button color="primary" routerLink='/register'>Add Account</button>
+        <button mat-icon-button color="primary" routerLink='/login'>SignOut</button><br>
+      </div>
+    </mat-card>
+  </div>
+  <mat-sidenav-container (click)="isPristine=false" fxFlexFill class="sidenavbar">
+    <mat-sidenav #sidenav mode='side'>
+      <mat-nav-list fxLayout="column" fxFlex="100">
+        <mat-list-item disableRipple routerLink="home" [class.noteActive]=isPristine [routerLinkActive]="['is-active']" class="notes">
+          <mat-icon class="nav_icon" matTooltip="Create Notes">lightbulb_outline</mat-icon>
+          Notes
+        </mat-list-item>
+        <mat-list-item disableRipple routerLink="reminder" [routerLinkActive]="['is-active']" class="reminder">
+          <mat-icon class="nav_icon" matTooltip="Create Reminder">notifications_none</mat-icon> Reminder
+        </mat-list-item>
+        <div fxLayout="column">
+          <div *ngFor="let data of labelsDisplay">
+            <mat-list-item disableRipple routerLink="label/:data" [routerLinkActive]="['is-active']" name="data"
+              class="showlabel" mat-button>
+              <img src="../../../assets/svg/label-black-24dp.svg">
+              {{data.lableName}}
+              <br>
+            </mat-list-item>
+          </div>
+        </div>
+        <mat-list-item disableRipple routerLink="edit_label" [routerLinkActive]="['is-active']" class="notes">
+          <img src="../../../assets/svg/edit.svg"> Edit Labels
+        </mat-list-item>
+        <mat-list-item disableRipple routerLink="archive" [routerLinkActive]="['is-active']" class="notes">
+          <img src="../../../assets/svg/archive.svg"> Archive
+        </mat-list-item>
+        <mat-list-item disableRipple routerLink="trash" [routerLinkActive]="['is-active']" class="notes">
+          <img mat-icon src="../../../assets/svg/delete.svg"> Trash
+        </mat-list-item>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content class="content">
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

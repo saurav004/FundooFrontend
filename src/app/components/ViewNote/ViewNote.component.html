@@ -1,14 +1,19 @@
   <app-addNote></app-addNote>
   <div class="unpin-container">
-    <div class="one-note" [ngClass]="{'ng-one-note-grid': viewListGrid, 'ng-one-note-flex': !viewListGrid }">
+    <div class="one-note" [ngClass]="{'ng-one-note-grid': viewListGrid , 'ng-one-note-flex': !viewListGrid  }">
       <div class="notes-container" *ngFor="let note of getNote?.reverse()">
         <mat-card class="note-card-class">
           <div class="pin-class">
-            <button mat-button mat-icon-button>
-            <span matTooltip="pin note">
-              <img src="../../../assets/outline_push_pin_black_24dp.png">
-            </span>
-          </button>
+            <button *ngIf="note.isPined" (click)=setPinNote(note) mat-button mat-icon-button>
+              <span matTooltip="pin note">
+                <img src="../../../assets/baseline_push_pin_black_24dp.png">
+              </span>
+            </button>
+            <button *ngIf="!note.isPined" (click)=setPinNote(note) mat-button mat-icon-button>
+              <span matTooltip="pin note">
+                <img src="../../../assets/outline_push_pin_black_24dp.png">
+              </span>
+            </button>
           </div>
           <div>
             <div class="note-title">{{note.title}}</div>

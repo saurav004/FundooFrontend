@@ -1,11 +1,5 @@
-//  *{
-//    margin:0;
-//    padding:0;
-//    box-sizing: border-box;
-//  }
-
 mat-toolbar {
-  background-color: #fff;
+  background-color: white;
   padding: 15px 8px 8px 8px;
   box-sizing: border-box;
   position: sticky;
@@ -85,14 +79,27 @@ img {
 
 mat-sidenav {
   width: 280px;
+  position: fixed;
+  overflow-y: auto;
+  top: 12%;
+  bottom: 0;
+}
+
+.content {
+  overflow: hidden;
+}
+
+mat-nav-list {
+  overflow: hidden auto;
 }
 
 .mat-nav-list .mat-list-item:focus,
+.noteActive,
 .mat-action-list .mat-list-item:focus,
 .mat-list-option:focus {
   background: #feefc3 !important;
 }
 
 mat-sidenav-content {
-  background-color: #fff;
+  background-color: white;
 }

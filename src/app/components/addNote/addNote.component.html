@@ -12,8 +12,20 @@
       <img src="../../../assets/outline_insert_photo_black_24dp.png">
     </button>
   </div>
-  <div *ngIf="showNoteContent" fxFlex=60 class="container">
-    <div fxFlex=100 fxFlex.xs=100 fxLayout="column" fxLayoutGap=5% fxLayoutAlign="space around start">
+  <div *ngIf="showNoteContent" [ngStyle]="noteColor(color)" fxFlex=60 class="container">
+    <div fxFlex=100 fxFlex.xs=100 fxLayout="column" fxLayoutGap=3% fxLayoutAlign="space around start">
+      <div fxLayoutAlign="end" class="pin-class">
+        <button *ngIf="isPinPushed" (click)=pinPushed() mat-button mat-icon-button>
+          <span matTooltip="pin note">
+            <img src="../../../assets/baseline_push_pin_black_24dp.png">
+          </span>
+        </button>
+          <button *ngIf="!isPinPushed" (click)=pinPushed() mat-button mat-icon-button>
+            <span matTooltip="pin note">
+              <img src="../../../assets/outline_push_pin_black_24dp.png">
+            </span>
+          </button>
+      </div>
       <div *ngIf="showNoteContent" class="title">
         <input matInput type="text" style="font-size: 21px;" [formControl]="title" placeholder="Title">
       </div>
@@ -78,18 +90,18 @@
   </mat-menu>
   <mat-menu #matMenuChangeColor="matMenu">
     <div class='change-color'>
-      <button mat-mini-fab style="background-color: #FFFFFF;"></button>
-      <button mat-mini-fab style="background-color: #fff475;"></button>
-      <button mat-mini-fab style="background-color: #f28b82;"></button>
-      <button mat-mini-fab style="background-color: #fbbc04;"></button>
-      <button mat-mini-fab style="background-color: #ccff90;"></button>
-      <button mat-mini-fab style="background-color: #a7ffeb;"></button>
-      <button mat-mini-fab style="background-color: #cbf0f8;"></button>
-      <button mat-mini-fab style="background-color: #aecbfa;"></button>
-      <button mat-mini-fab style="background-color: #d7aefb;"></button>
-      <button mat-mini-fab style="background-color: #fdcfe8;"></button>
-      <button mat-mini-fab style="background-color: #e6c9a8;"></button>
-      <button mat-mini-fab style="background-color: #e8eaed;"></button>
+      <button mat-mini-fab style="background-color: #FFFFFF;"(click)="changeColor('#FFFFFF')"></button>
+      <button mat-mini-fab style="background-color: #fff475;"(click)="changeColor('#fff475')"></button>
+      <button mat-mini-fab style="background-color: #f28b82;"(click)="changeColor('#f28b82')"></button>
+      <button mat-mini-fab style="background-color: #fbbc04;"(click)="changeColor('#fbbc04')"></button>
+      <button mat-mini-fab style="background-color: #ccff90;"(click)="changeColor('#ccff90')"></button>
+      <button mat-mini-fab style="background-color: #a7ffeb;"(click)="changeColor('#a7ffeb')"></button>
+      <button mat-mini-fab style="background-color: #cbf0f8;"(click)="changeColor('#cbf0f8')"></button>
+      <button mat-mini-fab style="background-color: #aecbfa;"(click)="changeColor('#aecbfa')"></button>
+      <button mat-mini-fab style="background-color: #d7aefb;"(click)="changeColor('#d7aefb')"></button>
+      <button mat-mini-fab style="background-color: #fdcfe8;"(click)="changeColor('#fdcfe8')"></button>
+      <button mat-mini-fab style="background-color: #e6c9a8;"(click)="changeColor('#e6c9a8')"></button>
+      <button mat-mini-fab style="background-color: #e8eaed;"(click)="changeColor('#e8eaed')"></button>
     </div>
   </mat-menu>
   <mat-menu #matMenuMore="matMenu">

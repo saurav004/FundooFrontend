@@ -29,6 +29,8 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
 describe('ForgotPasswordComponent', () => {
   let component: ForgotPasswordComponent;
   let fixture: ComponentFixture<ForgotPasswordComponent>;
+  let debugElementRef: DebugElement;
+  let nativeElementRef: HTMLElement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -87,4 +89,25 @@ describe('ForgotPasswordComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it('should check users email address is invalid', () => {
+    let email = component.email;
+    expect(email.valid).toBeFalsy();
+    expect(email.pristine).toBeTruthy();
+    expect(email.errors['required']).toBeTruthy();
+    email.setValue('abc');
+    expect(email.errors['email']).toBeTruthy();
+  })
+  it('should check valid email name is entered', () => {
+    let email = component.email;
+    email.setValue('abc@gmail.com');
+    expect(email.errors).toBeNull();
+  })
+  it('should check submit button disabled or not', () => {
+    let btn = fixture.debugElement.query(By.css('#submitButton'));
+    fixture.detectChanges()
+    expect(nativeElementRef.querySelector('button').disabled).toBeTruthy();
+    component.email.setValue('abc@gmail.com');
+    fixture.detectChanges();
+    expect(nativeElementRef.querySelector('button').disabled).toBeFalsy();
+  })
 });

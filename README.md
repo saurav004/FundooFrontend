@@ -6,6 +6,19 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
+### Prerequisites
+
+Need to Install Node, Angular Cli, Angular Material, Angular FlexLayout, Angular cdk
+
+```
+Angular Cli: npm install @angular/cli
+Angular Cli version: npm install -g @angular/cli@8.0.1
+Angular material and CDK: npm install --save @angular/material @angular/cdk
+Angular FlexLayout: npm i @angular/flex-layout
+
+Here in this project just do npm install and all the dependencies will get intalled
+```
+
 ## Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.

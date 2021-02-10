@@ -43,7 +43,6 @@ export class RegisterComponent implements OnInit {
   }
 
   getErrorPhoneNumber() {
-    console.log(this.reactiveForm);
     return this.reactiveForm.controls.phoneNumber.hasError('required') ? 'Enter Phone Number' :
       this.reactiveForm.controls.phoneNumber.errors.maxlength ? 'max 15 characters required' :
         this.reactiveForm.controls.phoneNumber.errors.minlength ? 'min 13 characters required' :
@@ -51,25 +50,20 @@ export class RegisterComponent implements OnInit {
   }
 
   getErrorPassword() {
-    console.log(this.reactiveForm);
     return this.reactiveForm.controls.password.hasError('required') ? 'Enter Password' :
       this.reactiveForm.controls.password.errors.maxLength ? 'max 15 characters' :
         this.reactiveForm.controls.password.errors.minLength ? 'min 8 characters' : '';
   }
   getErrorConfirmPassword() {
-    console.log(this.reactiveForm);
     return this.reactiveForm.controls.confirmPassword.hasError('required') ? 'Enter Password' :
       this.reactiveForm.controls.confirmPassword.hasError('passwordMismatch') ? 'Passwords do not match' : '';
   }
   register() {
-    console.log(this.registration);
-    console.log(this.reactiveForm);
     this.registration.firstName = this.reactiveForm.value["firstName"];
     this.registration.lastName = this.reactiveForm.value["lastName"];
     this.registration.phoneNumber = this.reactiveForm.value["phoneNumber"];
     this.registration.email = this.reactiveForm.value["email"];
     this.registration.password = this.reactiveForm.value["password"];
-    console.log(this.registration)
     this.httpService.postRequest("user/userSignUp",this.registration)
       .subscribe(
         data => {this.openSnackBar("Account successfully created", "Close");

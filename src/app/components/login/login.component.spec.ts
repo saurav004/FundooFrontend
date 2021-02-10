@@ -97,7 +97,7 @@ describe('LoginComponent', () => {
     expect(email.errors['email']).toBeTruthy();
   })
 
-  it('should check valid email name is entered', () => {
+  it('should check valid email  is entered', () => {
     let email = component.loginForm.controls['email'];
     email.setValue('abc@gmail.com');
     expect(email.errors).toBeNull();

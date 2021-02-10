@@ -1,3 +1,4 @@
+import { DataService } from 'src/app/services/data.service';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
@@ -11,27 +12,31 @@ import { HttpService } from 'src/app/services/http.service';
   styleUrls: ['./addNote.component.scss']
 })
 export class AddNoteComponent implements OnInit {
+  isPinPushed :boolean= false;
   showNoteContent = false;
   content = new FormControl('');
   token: string;
   private noteData: Note = new Note();
   private allNotes: Note[];
-  constructor(public router: Router, private snackBar: MatSnackBar,private httpService:HttpService) { }
+  color: string="#FFFFFF";
+
+  constructor(public router: Router, private snackBar: MatSnackBar,private httpService:HttpService,private dataService: DataService) { }
   title = new FormControl('', [Validators.required])
   description = new FormControl('', [Validators.required])
-  setcolor:string;
+
   ngOnInit() {
+    this.dataService.noteMessage.subscribe(notes => this.allNotes = notes);
   }
-  @Output() refreshEvent = new EventEmitter<any>();
 
-
+ pinPushed(){
+   this.isPinPushed = !this.isPinPushed;
+ }
 
   addNote() {
     var form_contents = {
       "title": this.title.value,
       "description": this.description.value
     }
-    console.log(form_contents)
     if (this.title.value == '' || this.description.value == '') {
       // this.snackBar.open("title and description is required...","close", {
       // duration: 3000,
@@ -48,6 +53,8 @@ export class AddNoteComponent implements OnInit {
     if (!this.showNoteContent) {
       this.noteData.title = this.title.value;
       this.noteData.description = this.description.value;
+      this.noteData.isPined = this.isPinPushed;
+      this.noteData.color = this.color;
       // if user enter note title or note description then add note
       if (this.noteData.title !== '' || this.noteData.description !== '') {
         // post data on backend api
@@ -55,7 +62,8 @@ export class AddNoteComponent implements OnInit {
           result => {
             this.snackBar.open('Note successfully added', 'close')
               ._dismissAfter(2500);
-            this.allNotes.push(result.data);
+            this.allNotes.push(result.status.details);
+            this.dataService.changeNoteMessage(this.allNotes);
           },
           err => {
             // print if error occur during add note data  in database
@@ -69,5 +77,15 @@ export class AddNoteComponent implements OnInit {
         this.description.setValue('');
       }
     }
+  }
+  changeColor(color) {
+    this.color = color;
+  }
+
+  noteColor(color) {
+    const style = {
+      'background-color': color,
+    };
+    return style;
   }
 }
