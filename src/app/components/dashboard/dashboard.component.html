@@ -28,10 +28,10 @@
       </form>
       <div fxLayout="row" fxFlex=10 fxLayoutGap=20% fxFlexOffset=10%>
         <div class="grid-list" fxFlex=30 fxFlex.lg=30 fxFlex.md=30 fxFlex.sm=30 fxFlex.xs=30>
-          <button mat-icon-button *ngIf='isView' (click)="grid_list()">
+          <button mat-icon-button *ngIf='!isGridView' (click)="viewChange()">
             <img style="width:24px;height:24px;" src="../../../assets/svg/view_agenda-black-18dp.svg">
           </button>
-          <button mat-icon-button *ngIf='!isView' (click)="grid_list()">
+          <button mat-icon-button *ngIf='isGridView' (click)="viewChange()">
             <mat-icon>grid_view</mat-icon>
           </button>
         </div>

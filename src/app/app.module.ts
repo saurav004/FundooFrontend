@@ -23,10 +23,12 @@ import { SearchComponent } from './components/search/search.component';
 import { EditLabelsComponent } from './components/editLabels/editLabels.component';
 import { AddNoteComponent } from './components/addNote/addNote.component';
 import { SetPasswordComponent } from './components/setPassword/set-password.component';
+import { NoteToolBarComponent } from './components/noteToolBar/noteToolBar.component';
 
 
 @NgModule({
   declarations: [
+    NoteToolBarComponent,
     AddNoteComponent,
     EditLabelsComponent,
     NotesOfCertainLabelComponent,

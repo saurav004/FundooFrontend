@@ -1,0 +1,67 @@
+<div>
+  <div class="create-note-toolbar" fxLayout="row" fxLayoutAlign="space-around center">
+    <span matTooltip="reminder" [matMenuTriggerFor]="matMenuReminder">
+      <mat-icon> <img src="../../../assets/outline_add_alert_black_24dp.png">
+      </mat-icon>
+    </span>
+    <span matTooltip="Collaborate">
+      <mat-icon> <img src="../../../assets/outline_person_add_black_24dp.png">
+      </mat-icon>
+    </span>
+    <span matTooltip="Change color" [matMenuTriggerFor]="matMenuChangeColor">
+      <mat-icon> <img src="../../../assets/outline_palette_black_24dp.png">
+      </mat-icon>
+    </span>
+    <span matTooltip="Add image">
+      <mat-icon> <img src="../../../assets/outline_insert_photo_black_24dp.png">
+      </mat-icon>
+    </span>
+    <span matTooltip="Archive" (click)="archiveNote()">
+      <mat-icon> <img src="../../../assets/outline_archive_black_24dp.png">
+      </mat-icon>
+    </span>
+    <span matTooltip="More" [matMenuTriggerFor]="matMenuMore">
+      <mat-icon> <img src="../../../assets/outline_more_vert_black_24dp.png">
+      </mat-icon>
+    </span>
+    <div>
+      <button mat-button (click)="addOrEditNote()">Close</button>
+    </div>
+  </div>
+  <mat-menu #matMenuReminder="matMenu">
+    <div><span>Reminder: </span>
+      <button mat-menu-item>Later Today</button>
+      <button mat-menu-item>Tomorrow</button>
+      <button mat-menu-item>Next Week</button>
+      <button mat-menu-item>Home</button>
+      <button mat-menu-item>Work</button>
+      <button mat-menu-item>
+        <mat-icon>access_time</mat-icon>Pick date & time
+      </button>
+      <button mat-menu-item>
+        <mat-icon> place</mat-icon>Pick place
+      </button>
+    </div>
+  </mat-menu>
+  <mat-menu #matMenuChangeColor="matMenu">
+    <div class='change-color'>
+      <button mat-mini-fab style="background-color: #FFFFFF;" (click)="changeColor('#FFFFFF')"></button>
+      <button mat-mini-fab style="background-color: #fff475;" (click)="changeColor('#fff475')"></button>
+      <button mat-mini-fab style="background-color: #f28b82;" (click)="changeColor('#f28b82')"></button>
+      <button mat-mini-fab style="background-color: #fbbc04;" (click)="changeColor('#fbbc04')"></button>
+      <button mat-mini-fab style="background-color: #ccff90;" (click)="changeColor('#ccff90')"></button>
+      <button mat-mini-fab style="background-color: #a7ffeb;" (click)="changeColor('#a7ffeb')"></button>
+      <button mat-mini-fab style="background-color: #cbf0f8;" (click)="changeColor('#cbf0f8')"></button>
+      <button mat-mini-fab style="background-color: #aecbfa;" (click)="changeColor('#aecbfa')"></button>
+      <button mat-mini-fab style="background-color: #d7aefb;" (click)="changeColor('#d7aefb')"></button>
+      <button mat-mini-fab style="background-color: #fdcfe8;" (click)="changeColor('#fdcfe8')"></button>
+      <button mat-mini-fab style="background-color: #e6c9a8;" (click)="changeColor('#e6c9a8')"></button>
+      <button mat-mini-fab style="background-color: #e8eaed;" (click)="changeColor('#e8eaed')"></button>
+    </div>
+  </mat-menu>
+  <mat-menu #matMenuMore="matMenu">
+    <button mat-menu-item>Add label</button>
+    <button mat-menu-item>Add drawing</button>
+    <button mat-menu-item>Show checkboxes</button>
+  </mat-menu>
+</div>

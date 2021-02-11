@@ -12,15 +12,16 @@ import { HttpService } from 'src/app/services/http.service';
   styleUrls: ['./addNote.component.scss']
 })
 export class AddNoteComponent implements OnInit {
-  isPinPushed :boolean= false;
+  isArchived: boolean = false;
+  isPinPushed: boolean = false;
   showNoteContent = false;
   content = new FormControl('');
   token: string;
   private noteData: Note = new Note();
   private allNotes: Note[];
-  color: string="#FFFFFF";
+  color: string = "#FFFFFF";
 
-  constructor(public router: Router, private snackBar: MatSnackBar,private httpService:HttpService,private dataService: DataService) { }
+  constructor(public router: Router, private snackBar: MatSnackBar, private httpService: HttpService, private dataService: DataService) { }
   title = new FormControl('', [Validators.required])
   description = new FormControl('', [Validators.required])
 
@@ -28,23 +29,12 @@ export class AddNoteComponent implements OnInit {
     this.dataService.noteMessage.subscribe(notes => this.allNotes = notes);
   }
 
- pinPushed(){
-   this.isPinPushed = !this.isPinPushed;
- }
-
-  addNote() {
-    var form_contents = {
-      "title": this.title.value,
-      "description": this.description.value
-    }
-    if (this.title.value == '' || this.description.value == '') {
-      // this.snackBar.open("title and description is required...","close", {
-      // duration: 3000,
-      // });
-    }
+  pinPushed() {
+    this.isPinPushed = !this.isPinPushed;
   }
-  blurred(){
-    this.showNoteContent=false;
+
+  blurred() {
+    this.showNoteContent = false;
   }
 
   showHideButton() {
@@ -55,10 +45,11 @@ export class AddNoteComponent implements OnInit {
       this.noteData.description = this.description.value;
       this.noteData.isPined = this.isPinPushed;
       this.noteData.color = this.color;
+      this.noteData.isArchived = this.isArchived;
       // if user enter note title or note description then add note
       if (this.noteData.title !== '' || this.noteData.description !== '') {
         // post data on backend api
-        this.httpService.postRequestWithToken("notes/addNotes",this.noteData).subscribe(
+        this.httpService.postRequestWithToken("notes/addNotes", this.noteData).subscribe(
           result => {
             this.snackBar.open('Note successfully added', 'close')
               ._dismissAfter(2500);
@@ -82,10 +73,13 @@ export class AddNoteComponent implements OnInit {
     this.color = color;
   }
 
-  noteColor(color) {
+  noteColor(color: any) {
     const style = {
       'background-color': color,
     };
     return style;
+  }
+  archiveNote() {
+    this.isArchived = !this.isArchived;
   }
 }

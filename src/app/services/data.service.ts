@@ -52,4 +52,12 @@ export class DataService {
       }
     );
   }
+
+  private gridOrListSource = new BehaviorSubject<boolean>(this.gridListView);
+  gridListMessage = this.gridOrListSource.asObservable();
+
+  // function for next change for all subscriber components
+  changeView(message: boolean) {
+    this.gridOrListSource.next(message);
+  }
 }

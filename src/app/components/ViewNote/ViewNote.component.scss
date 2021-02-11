@@ -8,7 +8,6 @@
 .pin-class {
     cursor: pointer;
     float: right;
-    margin-bottom: -13%;
     backface-visibility: hidden;
 
     .pin-class>img {
@@ -32,17 +31,10 @@
 
 .one-note{
     border-radius: 10px;
-    justify-content: center;
     width: -webkit-fill-available;
     display: flex;
     flex-wrap: wrap;
-    max-width: 752px;
     margin: 0 auto 0 auto;
-
-    mat-card{
-        margin: 8px 2px 8px 8px;
-        padding: 2px 0 2px 0;
-    }
 }
 
 .note-title{
@@ -157,8 +149,11 @@
 
 .ng-one-note-flex {
     display: flex;
+    justify-content: center;
     .note-card-class {
-        width: 238px;
+        width: 240px;
+        margin:16px;
+        padding:0;
     }
 }
 .ng-one-note-grid {
@@ -166,5 +161,13 @@
 
     .note-card-class {
         width: auto;
+        margin:16px;
+        padding:0;
     }
+}
+
+.notes-container{
+    width: 60%;
+    max-width: 752px;
+    margin: 0px auto;
 }
