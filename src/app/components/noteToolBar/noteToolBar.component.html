@@ -60,8 +60,20 @@
     </div>
   </mat-menu>
   <mat-menu #matMenuMore="matMenu">
-    <button mat-menu-item>Add label</button>
-    <button mat-menu-item>Add drawing</button>
+    <button mat-menu-item (click)="moveTrash()">Delete note</button>
+    <button mat-menu-item [matMenuTriggerFor]="addLabels">Add label</button>
+    <button mat-menu-item>Make a copy</button>
+    <button mat-menu-item>Add drowing</button>
     <button mat-menu-item>Show checkboxes</button>
+  </mat-menu>
+  <mat-menu #addLabels="matMenu">
+    <div style="padding-left: 10px;" *ngFor="let oneLabel of allLabels">
+      <div *ngIf="note.labelIdList.includes(oneLabel.id)">
+        <input type="checkbox" checked (click)='addedLabel(note, oneLabel.name)'><label>{{oneLabel.name}} </label>
+      </div>
+      <div *ngIf="!note.labelIdList.includes(oneLabel.id)">
+        <input type="checkbox" (click)='addedLabel(note, oneLabel.name)'><label>{{oneLabel.name}} </label>
+      </div>
+    </div>
   </mat-menu>
 </div>

@@ -1,10 +1,11 @@
 import { DataService } from 'src/app/services/data.service';
 import { HttpService } from 'src/app/services/http.service';
 import { DatePipe } from '@angular/common';
-import { Component, DoCheck, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { Note } from 'src/app/models/note';
 import { Label } from 'src/app/models/label';
+import { EditNoteComponent } from '../editNote/editNote.component';
 
 @Component({
   selector: 'app-ViewNote',
@@ -19,7 +20,6 @@ export class ViewNoteComponent implements OnInit  {
   reminderData: string;
   gridListView = false;
   getNote: Note[];
-
   GridListView: boolean = false;
   viewListGrid: boolean=true;
 
@@ -29,42 +29,11 @@ export class ViewNoteComponent implements OnInit  {
     private datePipe: DatePipe, private httpService: HttpService) { }
 
   ngOnInit() {
-    this.dataService.noteMessage.subscribe(notes => this.getNote = notes);
+    this.dataService.noteMessage.subscribe(notes => {
+      this.getNote = notes;
+      console.log(this.getNote);
+    });
     this.dataService.gridListMessage.subscribe(view => this.viewListGrid= view);
-  }
-
-
-  setPinNote(note) {
-    const data = {
-      dataForUpdate: { isPined: !note.isPined },
-    };
-
-  }
-  
-  setReminder(note) {
-
-  }
-
-  getReminder(reminder) {
-
-  }
-
-
-  addedLabel(note, updatelabel) {
-
-  }
-
-  removeLable(note, labelToDelete) {
-
-  }
-
-  addLabel(note, newLabel) {
-
-  }
-
-
-  moveTrash(note) {
-
   }
 
   noteColor(color) {
@@ -74,21 +43,30 @@ export class ViewNoteComponent implements OnInit  {
     return style;
   }
 
-  archiveNote(note) {
+  openDialog(note) {
+    const dialogRef = this.dialog.open(EditNoteComponent,
+      {
+        panelClass: 'edit-note-no-padding-dialog',
+        height: 'auto',
+        width: '50%',
+        data: note,
+      }
+    );
+    dialogRef.afterClosed().subscribe(result => {
+      if (Object.getOwnPropertyNames(result).length > 0) {
+        const data = {
+          dataForUpdate: result,
+          urlCridetial: note,
+          showMessage: 'Note saved'
+        };
+        }
+      console.log('The dialog has been closed and result is ', result);
+    });
   }
 
-  changeColor(note, color) {
+  setPinNote(note) {
 
   }
-  getFile(note) {
-
-  }
-
-  onFileSelected(target) {
-
-  }
-
-
 
 
 }

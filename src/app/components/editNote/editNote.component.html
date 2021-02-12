@@ -1,0 +1,15 @@
+<div class="container">
+  <div>
+    <mat-card class="one-note" >
+      <div class="note-title">
+        <textarea matInput cdkTextareaAutosize type="text" placeholder="Title" name="title"
+          [(ngModel)]=title></textarea>
+      </div>
+      <div class="note-content">
+        <textarea matInput rows="6" type="text" placeholder="Take a note..." [(ngModel)]=description></textarea>
+      </div>
+      <div class="display-time">Edited</div>
+    </mat-card>
+    <app-noteToolBar ></app-noteToolBar>
+  </div>
+</div>

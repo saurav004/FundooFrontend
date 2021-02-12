@@ -2,42 +2,38 @@
   <div class="unpin-container">
     <div class="one-note" [ngClass]="{'ng-one-note-grid': viewListGrid , 'ng-one-note-flex': !viewListGrid  }">
       <div [ngClass]="{'notes-container':viewListGrid}" *ngFor="let note of getNote?.reverse()">
-        <mat-card class="note-card-class" [ngStyle]="noteColor(note.color)">
+        <mat-card class="note-card-class"  (click)="openDialog(note)" [ngStyle]="noteColor(note.color)">
           <div fxLayout="row" fxLayoutAlign="space-between">
-          <div class="note-title">{{note.title}}</div>
-          <div class="pin-class">
-            <button *ngIf="note.isPined" (click)=setPinNote(note) mat-button mat-icon-button>
-              <span matTooltip="pin note">
-                <img src="../../../assets/baseline_push_pin_black_24dp.png">
-              </span>
-            </button>
-            <button *ngIf="!note.isPined" (click)=setPinNote(note) mat-button mat-icon-button>
-              <span matTooltip="pin note">
-                <img src="../../../assets/outline_push_pin_black_24dp.png">
-              </span>
-            </button>
-          </div>
+            <div class="note-title">{{note.title}}</div>
+            <div class="pin-class">
+              <button *ngIf="note.isPined" (click)=setPinNote(note) mat-button mat-icon-button>
+                <span matTooltip="pin note">
+                  <img src="../../../assets/baseline_push_pin_black_24dp.png">
+                </span>
+              </button>
+              <button *ngIf="!note.isPined" (click)=setPinNote(note) mat-button mat-icon-button>
+                <span matTooltip="pin note">
+                  <img src="../../../assets/outline_push_pin_black_24dp.png">
+                </span>
+              </button>
+            </div>
           </div>
           <div>
             <div class="note-content">{{note.description}}</div>
             <div class="label-content" fxLayoutGap="10px">
-              <div style="display: flex;flex-direction: row;height: fit-content;flex-wrap: wrap;">
-                <div class="chip"
-                  style="background-color: rgba(255, 255, 255, 0.39);border-radius: 10px;padding: 5px;height: fit-content;align-self: center;">
+              <div id="content1">
+                <div class="chip">
                   <div>{{reminderData}}</div>
                 </div>
-                <div class="chip"
-                  style="padding: 5px;background-color: #e5f0f0;margin-left: 5%;margin-top: 5%;border-radius: 10px 10px 10px 10px;height: min-content;">
+                <div class="chip">
                   label
-                  <i matTooltip="Remove Label" class='material-icons close' style="vertical-align: middle; 
-                                              color: rgba(0,0,0,.7);
-                                              font-size: medium;">close
-                  </i>
+                  <i matTooltip="Remove Label" class='material-icons close'>close</i>
                 </div>
               </div>
             </div>
           </div>
-          <div>
+          <app-noteToolBar [note]="note"></app-noteToolBar>
+          <!-- <div>
             <div id="hover-show-content">
               <span matTooltip="reminder" [matMenuTriggerFor]="matMenuReminder">
                 <img src="../../../assets/outline_add_alert_black_24dp.png">
@@ -61,7 +57,7 @@
                 <img src="../../../assets/outline_more_vert_black_24dp.png">
               </span>
             </div>
-          </div>
+          </div> -->
           <mat-menu #matMenuReminder="matMenu">
             <div>
               <h3>Reminder: </h3>
@@ -91,7 +87,7 @@
             <button mat-menu-item>Delete note</button>
             <button mat-menu-item [matMenuTriggerFor]="addLabels">Add label</button>
             <button mat-menu-item>Make a copy</button>
-            <button mat-menu-item>Add drowing</button>
+            <button mat-menu-item>Add drawing</button>
             <button mat-menu-item>Show checkboxes</button>
           </mat-menu>
           <mat-menu #addLabels="matMenu">

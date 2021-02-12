@@ -8,6 +8,7 @@ export class Note {
     isArchived: boolean;
     color: string;
     reminder: string;
-    collaberators: any;
+    collaborators: any[];
     id:string;
+    userId:string;
 }

@@ -24,10 +24,12 @@ import { EditLabelsComponent } from './components/editLabels/editLabels.componen
 import { AddNoteComponent } from './components/addNote/addNote.component';
 import { SetPasswordComponent } from './components/setPassword/set-password.component';
 import { NoteToolBarComponent } from './components/noteToolBar/noteToolBar.component';
+import { EditNoteComponent } from './components/editNote/editNote.component';
 
 
 @NgModule({
   declarations: [
+    EditNoteComponent,
     NoteToolBarComponent,
     AddNoteComponent,
     EditLabelsComponent,
@@ -44,7 +46,6 @@ import { NoteToolBarComponent } from './components/noteToolBar/noteToolBar.compo
     RegisterComponent,
     LoginComponent,
     TitleComponent,
-    
   ],
   imports: [
     MatTooltipModule,
@@ -53,8 +54,6 @@ import { NoteToolBarComponent } from './components/noteToolBar/noteToolBar.compo
     MatMenuModule,
     MatToolbarModule,
     MatSnackBarModule,
-    HttpClientModule,
-    BrowserModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
     FormsModule,
@@ -66,7 +65,9 @@ import { NoteToolBarComponent } from './components/noteToolBar/noteToolBar.compo
     MatCardModule,
     MatCheckboxModule,
     AppRoutingModule,
-    MatDialogModule 
+    MatDialogModule,
+    BrowserModule,
+    HttpClientModule, 
   ],
   providers: [
     PrintHook,
@@ -81,6 +82,9 @@ import { NoteToolBarComponent } from './components/noteToolBar/noteToolBar.compo
     BreakPointRegistry,
     LayoutGapStyleBuilder
   ],
+  entryComponents: [
+    EditNoteComponent,
+    ],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
 
