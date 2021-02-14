@@ -4,6 +4,7 @@ import { LoginModel } from 'src/app/models/login';
 import { MatSnackBar } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpService } from 'src/app/services/http.service';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   login: LoginModel = new LoginModel();
 
-  constructor(private httpService: HttpService,private _snackBar: MatSnackBar,private route: ActivatedRoute,private router: Router,private fb: FormBuilder) {
+  constructor(private httpService: HttpService,private dataService: DataService, private _snackBar: MatSnackBar,private route: ActivatedRoute,private router: Router,private fb: FormBuilder) {
     this.loginForm = this.fb.group({
       "email": [this.login.email, [Validators.required, Validators.email]],
       "password": [this.login.password, [Validators.required, Validators.minLength(8), Validators.maxLength(15)]],
@@ -37,12 +38,12 @@ export class LoginComponent implements OnInit {
           {
             localStorage.setItem("token",response.id);
             localStorage.setItem("email",response.email);
-
             this._snackBar.open(
               "Login Successfull","close",
               
                { duration: 2500 }
            )
+           this.dataService.get_all_note();
            this.router.navigate(['/dashboard/home']);
           }else {
            this._snackBar.open(

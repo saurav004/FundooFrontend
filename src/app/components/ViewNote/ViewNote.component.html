@@ -2,105 +2,41 @@
   <div class="unpin-container">
     <div class="one-note" [ngClass]="{'ng-one-note-grid': viewListGrid , 'ng-one-note-flex': !viewListGrid  }">
       <div [ngClass]="{'notes-container':viewListGrid}" *ngFor="let note of getNote?.reverse()">
-        <mat-card class="note-card-class"  (click)="openDialog(note)" [ngStyle]="noteColor(note.color)">
-          <div fxLayout="row" fxLayoutAlign="space-between">
-            <div class="note-title">{{note.title}}</div>
-            <div class="pin-class">
-              <button *ngIf="note.isPined" (click)=setPinNote(note) mat-button mat-icon-button>
-                <span matTooltip="pin note">
-                  <img src="../../../assets/baseline_push_pin_black_24dp.png">
-                </span>
-              </button>
-              <button *ngIf="!note.isPined" (click)=setPinNote(note) mat-button mat-icon-button>
-                <span matTooltip="pin note">
-                  <img src="../../../assets/outline_push_pin_black_24dp.png">
-                </span>
-              </button>
+        <mat-card class="note-card-class" [ngStyle]="noteColor(note.color)">
+          <div class="mat-card-" (click)="openDialog(note)">
+            <div fxLayout="row" fxLayoutAlign="space-between">
+              <div class="note-title">{{note.title}}</div>
+              <div class="pin-class">
+                <button *ngIf="note.isPined" (click)="setPinNote(note); $event.stopPropagation();" mat-button
+                  mat-icon-button>
+                  <span matTooltip="pin note">
+                    <img src="../../../assets/baseline_push_pin_black_24dp.png">
+                  </span>
+                </button>
+                <button *ngIf="!note.isPined" (click)="setPinNote(note);$event.stopPropagation();" mat-button
+                  mat-icon-button>
+                  <span matTooltip="pin note">
+                    <img src="../../../assets/outline_push_pin_black_24dp.png">
+                  </span>
+                </button>
+              </div>
             </div>
-          </div>
-          <div>
-            <div class="note-content">{{note.description}}</div>
-            <div class="label-content" fxLayoutGap="10px">
-              <div id="content1">
-                <div class="chip">
-                  <div>{{reminderData}}</div>
-                </div>
-                <div class="chip">
-                  label
-                  <i matTooltip="Remove Label" class='material-icons close'>close</i>
+            <div>
+              <div class="note-content">{{note.description}}</div>
+              <div class="label-content" fxLayoutGap="10px">
+                <div id="content1">
+                  <div class="chip">
+                    <div>{{reminderData}}</div>
+                  </div>
+                  <div class="chip">
+                    label
+                    <i matTooltip="Remove Label" class='material-icons close'>close</i>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
           <app-noteToolBar [note]="note"></app-noteToolBar>
-          <!-- <div>
-            <div id="hover-show-content">
-              <span matTooltip="reminder" [matMenuTriggerFor]="matMenuReminder">
-                <img src="../../../assets/outline_add_alert_black_24dp.png">
-              </span>
-              <span matTooltip="Collaborate">
-                <img src="../../../assets/outline_person_add_black_24dp.png">
-              </span>
-              <span matTooltip="Change color" [matMenuTriggerFor]="matMenuChangeColor">
-                <img src="../../../assets/outline_palette_black_24dp.png">
-              </span>
-              <span matTooltip="Add image">
-                <img src="../../../assets/outline_insert_photo_black_24dp.png">
-                <div style='height: 1px;width:0px; overflow: hidden;'>
-                  <input id="setNoteImage" type="file" value="upload" />
-                </div>
-              </span>
-              <span matTooltip="Archive">
-                <img src="../../../assets/outline_archive_black_24dp.png">
-              </span>
-              <span matTooltip="More" [matMenuTriggerFor]="matMenuMore">
-                <img src="../../../assets/outline_more_vert_black_24dp.png">
-              </span>
-            </div>
-          </div> -->
-          <mat-menu #matMenuReminder="matMenu">
-            <div>
-              <h3>Reminder: </h3>
-              <button mat-menu-item>
-                <mat-icon>access_time</mat-icon>
-                <input [(ngModel)]="datetimereminder" placeholder="Date Time">
-              </button>
-            </div>
-          </mat-menu>
-          <mat-menu #matMenuChangeColor="matMenu">
-            <div class='change-color'>
-              <button mat-mini-fab style="background-color: #FFFFFF;"></button>
-              <button mat-mini-fab style="background-color: #fff475;"></button>
-              <button mat-mini-fab style="background-color: #f28b82;"></button>
-              <button mat-mini-fab style="background-color: #fbbc04;"></button>
-              <button mat-mini-fab style="background-color: #ccff90;"></button>
-              <button mat-mini-fab style="background-color: #a7ffeb;"></button>
-              <button mat-mini-fab style="background-color: #cbf0f8;"></button>
-              <button mat-mini-fab style="background-color: #aecbfa;"></button>
-              <button mat-mini-fab style="background-color: #d7aefb;"></button>
-              <button mat-mini-fab style="background-color: #fdcfe8;"></button>
-              <button mat-mini-fab style="background-color: #e6c9a8;"></button>
-              <button mat-mini-fab style="background-color: #e8eaed;"></button>
-            </div>
-          </mat-menu>
-          <mat-menu #matMenuMore="matMenu">
-            <button mat-menu-item>Delete note</button>
-            <button mat-menu-item [matMenuTriggerFor]="addLabels">Add label</button>
-            <button mat-menu-item>Make a copy</button>
-            <button mat-menu-item>Add drawing</button>
-            <button mat-menu-item>Show checkboxes</button>
-          </mat-menu>
-          <mat-menu #addLabels="matMenu">
-            <div style="padding-left: 10px;">
-              <div>
-                <input type="checkbox" checked><label>label
-                </label>
-              </div>
-              <div>
-                <input type="checkbox"><label>label name </label>
-              </div>
-            </div>
-          </mat-menu>
         </mat-card>
       </div>
     </div>

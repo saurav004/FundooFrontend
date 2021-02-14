@@ -16,8 +16,12 @@
       <mat-icon> <img src="../../../assets/outline_insert_photo_black_24dp.png">
       </mat-icon>
     </span>
-    <span matTooltip="Archive" (click)="archiveNote()">
-      <mat-icon> <img src="../../../assets/outline_archive_black_24dp.png">
+    <span (click)="archiveNote()">
+      <mat-icon *ngIf="!note.isArchived" matTooltip="archive"> <img
+          src="../../../assets/outline_archive_black_24dp.png">
+      </mat-icon>
+      <mat-icon *ngIf="note.isArchived" matTooltip="unarchive"> <img
+          src="../../../assets/outline_unarchive_black_24dp.png">
       </mat-icon>
     </span>
     <span matTooltip="More" [matMenuTriggerFor]="matMenuMore">
@@ -29,17 +33,11 @@
     </div>
   </div>
   <mat-menu #matMenuReminder="matMenu">
-    <div><span>Reminder: </span>
-      <button mat-menu-item>Later Today</button>
-      <button mat-menu-item>Tomorrow</button>
-      <button mat-menu-item>Next Week</button>
-      <button mat-menu-item>Home</button>
-      <button mat-menu-item>Work</button>
+    <div>
+      <h3>Reminder: </h3>
       <button mat-menu-item>
-        <mat-icon>access_time</mat-icon>Pick date & time
-      </button>
-      <button mat-menu-item>
-        <mat-icon> place</mat-icon>Pick place
+        <mat-icon>access_time</mat-icon>
+        <input [(ngModel)]="datetimereminder" (ngModelChange)="setReminder()" placeholder="Date Time">
       </button>
     </div>
   </mat-menu>
@@ -60,20 +58,20 @@
     </div>
   </mat-menu>
   <mat-menu #matMenuMore="matMenu">
-    <button mat-menu-item (click)="moveTrash()">Delete note</button>
+    <button mat-menu-item (click)="trashRestore()">Delete note</button>
     <button mat-menu-item [matMenuTriggerFor]="addLabels">Add label</button>
     <button mat-menu-item>Make a copy</button>
-    <button mat-menu-item>Add drowing</button>
-    <button mat-menu-item>Show checkboxes</button>
   </mat-menu>
   <mat-menu #addLabels="matMenu">
-    <div style="padding-left: 10px;" *ngFor="let oneLabel of allLabels">
-      <div *ngIf="note.labelIdList.includes(oneLabel.id)">
-        <input type="checkbox" checked (click)='addedLabel(note, oneLabel.name)'><label>{{oneLabel.name}} </label>
-      </div>
-      <div *ngIf="!note.labelIdList.includes(oneLabel.id)">
-        <input type="checkbox" (click)='addedLabel(note, oneLabel.name)'><label>{{oneLabel.name}} </label>
+    <form >
+    <div>
+      <input matInput type="text" [(ngModel)]="createLabelObject.label" placeholder="Label">
+    </div>
+    <div  style="padding-left: 10px;" *ngFor="let oneLabel of allLabels">
+      <div>
+        <input type="checkbox" checked (click)='addedLabel(note, oneLabel.label)'><label>{{oneLabel.label}} </label>
       </div>
     </div>
+    </form>
   </mat-menu>
 </div>

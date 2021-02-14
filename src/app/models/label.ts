@@ -1,4 +1,5 @@
 export class Label {
-    id: number;
-    name: string;
+    label: string;
+    isDeleted: boolean;
+    id: string;
 }

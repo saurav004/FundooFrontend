@@ -9,7 +9,7 @@ describe('Service: Notes', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [NotesService],
-      imports: [HttpClientModule,HttpClientTestingModule]
+      imports: [HttpClientModule, HttpClientTestingModule]
     });
   });
 

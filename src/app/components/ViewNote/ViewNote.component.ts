@@ -13,7 +13,7 @@ import { EditNoteComponent } from '../editNote/editNote.component';
   styleUrls: ['./ViewNote.component.scss'],
   providers: [DatePipe],
 })
-export class ViewNoteComponent implements OnInit  {
+export class ViewNoteComponent implements OnInit {
   datetimereminder = new Date(Date.now());
   private allLabels: Label[];
   noteIdTemp: number;
@@ -21,19 +21,20 @@ export class ViewNoteComponent implements OnInit  {
   gridListView = false;
   getNote: Note[];
   GridListView: boolean = false;
-  viewListGrid: boolean=true;
+  viewListGrid: boolean = true;
 
 
 
   constructor(public dialog: MatDialog, private dataService: DataService,
-    private datePipe: DatePipe, private httpService: HttpService) { }
+    private datePipe: DatePipe, private httpService: HttpService, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
+    this.dataService.get_all_note();
     this.dataService.noteMessage.subscribe(notes => {
       this.getNote = notes;
       console.log(this.getNote);
     });
-    this.dataService.gridListMessage.subscribe(view => this.viewListGrid= view);
+    this.dataService.gridListMessage.subscribe(view => this.viewListGrid = view);
   }
 
   noteColor(color) {
@@ -53,20 +54,21 @@ export class ViewNoteComponent implements OnInit  {
       }
     );
     dialogRef.afterClosed().subscribe(result => {
-      if (Object.getOwnPropertyNames(result).length > 0) {
-        const data = {
-          dataForUpdate: result,
-          urlCridetial: note,
-          showMessage: 'Note saved'
-        };
-        }
-      console.log('The dialog has been closed and result is ', result);
+      this.dataService.updateNoteDetails(result);
     });
   }
 
-  setPinNote(note) {
-
+  setPinNote(note: Note) {
+    note.isPined = !note.isPined;
+    let updateObject = {
+      noteIdList: [note.id],
+      isPined: note.isPined
+    };
+    let result: any = '';
+    this.httpService.postRequestWithToken("notes/pinUnpinNotes", updateObject).subscribe((response) => {
+      result = response;
+      this.dataService.get_all_note();
+    },
+      (error) => { this.snackBar.open("Server Error", "Close", { duration: 2500 }) });
   }
-
-
 }

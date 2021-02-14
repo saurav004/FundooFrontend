@@ -66,7 +66,7 @@ export class RegisterComponent implements OnInit {
     this.registration.password = this.reactiveForm.value["password"];
     this.httpService.postRequest("user/userSignUp",this.registration)
       .subscribe(
-        data => {this.openSnackBar("Account successfully created", "Close");
+        data => { this.openSnackBar("Account successfully created", "Close");
         this.router.navigate(['/login']);
       },
         error => {this.openSnackBar("Failed to create account", "Close")},

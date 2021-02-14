@@ -6,9 +6,11 @@ export class Note {
     checklist: string;
     isPined: boolean;
     isArchived: boolean;
+    isDeleted: boolean;
     color: string;
     reminder: string;
     collaborators: any[];
-    id:string;
-    userId:string;
+    id: string;
+    userId: string;
+    modifiedDate: Date;
 }

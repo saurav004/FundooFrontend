@@ -1,56 +1,70 @@
 .container {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  border-radius: 12px;
 }
 
-.note-title{
-    height: auto;  
-    padding:5px 10px 5px 10px;
-    border-radius: 1px;
-}
-textarea{
-    width: 100%; 
-    border: none;
-    outline: 0;
-    max-height: 150px;
-    height: auto;
-}
-.note-content{
-    height: auto; 
-    padding:5px 10px 5px 10px;
-}
-.create-note-menu>span{
-    margin: 0px 8px 0px 8px;
-    border: 1px;
+.note-title {
+  height: auto;
+  padding: 5px 10px 5px 10px;
+  border-radius: 1px;
 }
 
-.create-note-toolbar{
-    display: flex;
-    flex-direction:row;
-    margin: 4px;
-    padding: 0px;
-    height: 36px;
+textarea {
+  width: 100%;
+  overflow-x: hidden;
+  border: none;
+  outline: 0;
+  height: auto;
+  max-height: 150px;
+  font-size: 1.5rem;
+  padding: 10px;
 }
-.create-note-menu>span{
-    margin:2px;
-    width: 32px;
-    height: 32px;
-    border: 1;
-    margin-top: 2px 8px 2px 8px;
-    color: gray;  
-}
-.create-note-close{    
-    max-width: 18%;
 
-    margin:0px 2px 0px 15px;
-    width: 50px;
-    padding:8px 24px 8px 24px;
+textarea::-webkit-scrollbar {
+  display: none;
 }
-.display-time{
-    display: block; padding:
-    5px 10px 5px 10px; 
-    font-size: .75rem;
-    color: #5f6368;
-    text-align: end;
-    letter-spacing: .025em;
+
+.note-content {
+  height: auto;
+  padding: 5px 10px 5px 10px;
+}
+
+.create-note-menu>span {
+  margin: 0px 8px 0px 8px;
+  border: 1px;
+}
+
+.create-note-toolbar {
+  display: flex;
+  flex-direction: row;
+  margin: 4px;
+  padding: 0px;
+  height: 36px;
+}
+
+.create-note-menu>span {
+  margin: 2px;
+  width: 32px;
+  height: 32px;
+  border: 1;
+  margin-top: 2px 8px 2px 8px;
+  color: gray;
+}
+
+.create-note-close {
+  max-width: 18%;
+  margin: 0px 2px 0px 15px;
+  width: 50px;
+  padding: 8px 24px 8px 24px;
+}
+
+.display-time {
+  display: block;
+  padding: 5px 10px 5px 10px;
+  font-size: .8rem;
+  color: #54595f;
+  text-align: end;
+  letter-spacing: .025em;
 }

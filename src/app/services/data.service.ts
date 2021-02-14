@@ -11,7 +11,6 @@ import { MatSnackBar } from '@angular/material';
   providedIn: 'root'
 })
 export class DataService {
-  private router: Router;
   public gridListView = false;
   public allNotes: Note[] = [];
   public trashNotes: Note[];
@@ -23,21 +22,18 @@ export class DataService {
 
   constructor(
     private httpService: HttpService,
-    private activateRoute: ActivatedRoute,
+    private router: Router,
     private snackBar: MatSnackBar) {
-    this.get_all_note();
     this.urlForColorChange = environment.urlForChangingColor;
   }
 
   private messageSource = new BehaviorSubject<Note[]>(this.allNotes);
   noteMessage = this.messageSource.asObservable();
 
-  // function for next change for all subscriber components
   changeNoteMessage(message: Note[]) {
     this.messageSource.next(message);
   }
 
-  // Function for get all notes
   get_all_note() {
     this.httpService.getRequestWithToken("notes/getNotesList").subscribe(
       response => {
@@ -58,21 +54,26 @@ export class DataService {
   private gridOrListSource = new BehaviorSubject<boolean>(this.gridListView);
   gridListMessage = this.gridOrListSource.asObservable();
 
-  // function for next change for all subscriber components
   changeView(message: boolean) {
     this.gridOrListSource.next(message);
   }
 
-  changeColor(data: Note) {
-    let result: any;
-    this.httpService.postRequestWithToken("notes/changesColorNotes", data).subscribe(response => result = response);
-    this.get_all_note();
-  }
-
-  pinUnPinNote(data: Note) {
-    let result: any;
-    this.httpService.postRequestWithToken("notes/pinUnpinNotes", data).subscribe(response => result = response);
-    this.get_all_note();
+  updateNoteDetails(updateObject) {
+    this.httpService.postRequestWithToken("notes/updateNotes", updateObject).subscribe(
+      result => {
+        this.snackBar.open('Edited Successfully ', 'close')._dismissAfter(3000);
+        this.get_all_note();
+      },
+      err => {
+        if (err.status === 400) {
+          this.snackBar.open('Invalid request.', 'close')._dismissAfter(3000);
+        } else if (err.status === 401) {
+          localStorage.clear();
+          this.router.navigate(['/login']);
+          this.snackBar.open('Your access token is expired.', 'close')._dismissAfter(2000);
+        }
+      }
+    );
   }
 
 }

@@ -9,7 +9,7 @@ describe('Service: Data', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [DataService],
-      imports: [HttpClientTestingModule,HttpClientModule]
+      imports: [HttpClientTestingModule, HttpClientModule]
     });
   });
 
