@@ -1,5 +1,5 @@
 export class Label {
     label: string;
-    isDeleted: boolean;
+    isDeleted: boolean=false;
     id: string;
 }

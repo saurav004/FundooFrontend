@@ -43,9 +43,6 @@ export class DashboardComponent implements OnInit {
 
   }
 
-  account() {
-    this.open = true;
-  }
   onBlurAccount() {
     this.open = false;
   }

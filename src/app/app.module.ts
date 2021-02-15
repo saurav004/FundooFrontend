@@ -12,11 +12,11 @@ import {
   MatIconModule,
   MatFormFieldModule,
   MatCardModule,
-
   MatSidenavModule,
   MatListModule,
   MatDialogModule,
-  MatDatepickerModule
+  MatDatepickerModule,
+  MatNativeDateModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -39,6 +39,8 @@ import { AddNoteComponent } from './components/addNote/addNote.component';
 import { SetPasswordComponent } from './components/setPassword/set-password.component';
 import { NoteToolBarComponent } from './components/noteToolBar/noteToolBar.component';
 import { EditNoteComponent } from './components/editNote/editNote.component';
+import { NgxMatDatetimePickerModule, NgxMatTimepickerModule, NgxMatNativeDateModule } from '@angular-material-components/datetime-picker';
+
 
 
 
@@ -64,6 +66,9 @@ import { EditNoteComponent } from './components/editNote/editNote.component';
     TitleComponent,
   ],
   imports: [
+    NgxMatNativeDateModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
     MatTooltipModule,
     MatListModule,
     MatSidenavModule,
@@ -84,6 +89,8 @@ import { EditNoteComponent } from './components/editNote/editNote.component';
     MatDialogModule,
     BrowserModule,
     HttpClientModule,
+    NgxMatTimepickerModule,
+    NgxMatDatetimePickerModule
   ],
   providers: [
     PrintHook,

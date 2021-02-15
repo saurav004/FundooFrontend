@@ -25,12 +25,19 @@
               <div class="note-content">{{note.description}}</div>
               <div class="label-content" fxLayoutGap="10px">
                 <div id="content1">
-                  <div class="chip">
-                    <div>{{reminderData}}</div>
+                  <div *ngFor="let reminder of note.reminder">
+                    <div class="chip">
+                      {{reminder}}
+                      <i role="button" (click)="removeReminderFromNote(note,reminder);$event.stopPropagation()"
+                        matTooltip="Remove reminder" class='material-icons close'>close</i>
+                    </div>
                   </div>
-                  <div class="chip">
-                    label
-                    <i matTooltip="Remove Label" class='material-icons close'>close</i>
+                  <div *ngFor="let label of note.noteLabels">
+                    <div class="chip">
+                      {{label.label}}
+                      <i role="button" (click)="removeExistingLabelFromNote(note,label);$event.stopPropagation()"
+                        matTooltip="Remove Label" class='material-icons close'>close</i>
+                    </div>
                   </div>
                 </div>
               </div>

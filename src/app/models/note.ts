@@ -1,3 +1,5 @@
+import { Label } from "./label";
+
 export class Note {
     file: string;
     title: string;
@@ -8,9 +10,10 @@ export class Note {
     isArchived: boolean;
     isDeleted: boolean;
     color: string;
-    reminder: string;
+    reminder: any[];
     collaborators: any[];
     id: string;
     userId: string;
     modifiedDate: Date;
+    noteLabels:Label[];
 }

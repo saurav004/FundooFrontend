@@ -2,6 +2,7 @@
   cursor: pointer;
   float: right;
   visibility: hidden;
+
   .pin-class>img {
     background-color: #b5afaf75;
     width: 25px;
@@ -14,6 +15,7 @@ mat-card:hover {
     cursor: pointer;
     float: right;
     visibility: visible;
+
     .pin-class>img {
       background-color: #b5afaf75;
       width: 25px;
@@ -46,7 +48,7 @@ mat-card:hover {
 .note-title {
   padding: 15px 5px 5px 8px;
   letter-spacing: .00625em;
-  color:black;
+  color: black;
   font-family: inherit;
   font-size: 1.25rem;
   font-weight: 400;
@@ -184,11 +186,11 @@ mat-card:hover {
   box-shadow: 0 3px 5px dimgrey;
 }
 
-mat-card:hover app-noteToolBar{
+mat-card:hover app-noteToolBar {
   visibility: visible;
 }
 
-app-noteToolBar{
+app-noteToolBar {
   visibility: hidden;
 }
 
@@ -199,17 +201,18 @@ app-noteToolBar{
   flex-wrap: wrap;
 }
 
-.chip{
-    padding: 5px;
-    background-color: #e5f0f0;
-    margin-left: 5%;
-    margin-top: 5%;
-    border-radius: 10px 10px 10px 10px;
-    height: min-content;
+.chip {
+  padding: 5px;
+  background-color: #d1e2e2;
+  margin-left: 2%;
+  margin-top: 2%;
+  border-radius: 10px;
+  height: min-content;
 }
 
-.close{
-    vertical-align: middle;
-    color: rgba(0,0,0,.7);
-    font-size: medium;
+.close {
+  cursor: pointer;
+  vertical-align: middle;
+  color: rgba(0, 0, 0, .7);
+  font-size: medium;
 }

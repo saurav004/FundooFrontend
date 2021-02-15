@@ -17,13 +17,11 @@ export class ViewNoteComponent implements OnInit {
   datetimereminder = new Date(Date.now());
   private allLabels: Label[];
   noteIdTemp: number;
-  reminderData: string;
+  reminderData: string = "reminder";
   gridListView = false;
   getNote: Note[];
   GridListView: boolean = false;
   viewListGrid: boolean = true;
-
-
 
   constructor(public dialog: MatDialog, private dataService: DataService,
     private datePipe: DatePipe, private httpService: HttpService, private snackBar: MatSnackBar) { }
@@ -32,7 +30,6 @@ export class ViewNoteComponent implements OnInit {
     this.dataService.get_all_note();
     this.dataService.noteMessage.subscribe(notes => {
       this.getNote = notes;
-      console.log(this.getNote);
     });
     this.dataService.gridListMessage.subscribe(view => this.viewListGrid = view);
   }
@@ -71,4 +68,26 @@ export class ViewNoteComponent implements OnInit {
     },
       (error) => { this.snackBar.open("Server Error", "Close", { duration: 2500 }) });
   }
+
+  removeExistingLabelFromNote(note: Note, labelObject: Label) {
+    const data = {
+      noteId: note.id,
+      labelId: labelObject.id
+    }
+    this.httpService.postRequestWithToken("notes/" + note.id + "/addLabelToNotes/" + labelObject.id + "/remove", data).subscribe((response) => {
+      this.dataService.get_all_note();
+    })
+  }
+
+  removeReminderFromNote(note:Note,reminder:any) {
+    const reminderObject = {
+      noteIdList: [note.id],
+      userId: note.userId
+    }
+    this.httpService.postRequestWithToken("notes/removeReminderNotes", reminderObject).subscribe((response) => {
+      this.snackBar.open("reminder remover successfully", "close", { duration: 2500 });
+      this.dataService.get_all_note();
+    })
+  }
+
 }

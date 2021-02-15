@@ -1,3 +1,4 @@
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { HttpService } from './../../services/http.service';
 import { Label } from 'src/app/models/label';
 import { DataService } from 'src/app/services/data.service';
@@ -12,12 +13,17 @@ import { MatSnackBar } from '@angular/material';
 })
 export class NoteToolBarComponent implements OnInit {
   @Input() note: Note;
-  allLabels: Label[] = [{label:"label1",id:"1",isDeleted:true},{label:"label2",id:"2",isDeleted:true}];
+  allLabels: Label[] = [{ label: "label1", id: "1", isDeleted: true }, { label: "label2", id: "2", isDeleted: true }];
   datetimereminder: string = "";
-  createLabelObject:Label=new Label();
-  constructor(private dataService: DataService, private httpService: HttpService, private snackBar: MatSnackBar) { }
+  createLabelObject: Label = new Label();
+  reminderDate: Date;
+  dateForm: FormGroup;
+  date: FormControl;
+
+  constructor(private dataService: DataService, private httpService: HttpService, private fb: FormBuilder, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
+    this.date = new FormControl(this.note.reminder);
   }
 
   archiveNote() {
@@ -52,12 +58,18 @@ export class NoteToolBarComponent implements OnInit {
   }
 
 
-  addedLabel(noteToAddLabel: Note, labelName: string) {
-
+  addLabel() {
+    this.httpService.postRequestWithToken("notes/" + this.note.id + "/noteLabels", this.createLabelObject).subscribe(
+      (response) => {
+        this.snackBar.open("label added", "close", { duration: 2000 });
+        this.dataService.get_all_note();
+      },
+      err => {
+        this.snackBar.open("Adding Label Failed", "close", { duration: 2000 });
+      });
   }
 
   addOrEditNote() {
-
   }
 
   trashRestore() {
@@ -76,7 +88,36 @@ export class NoteToolBarComponent implements OnInit {
       })
   }
 
-  setReminder() {
+  addExistingLabelToNote(labelObject: Label) {
+    const data = {
+      noteId: this.note.id,
+      labelId: labelObject.id
+    }
+    this.httpService.postRequestWithToken("notes/" + this.note.id + "/addLabelToNotes/" + labelObject.id + "/add", data).subscribe((response) => {
+      this.dataService.get_all_note();
+    })
+  }
 
+  removeExistingLabelFromNote(labelObject: Label) {
+    const data = {
+      noteId: this.note.id,
+      labelId: labelObject.id
+    }
+    this.httpService.postRequestWithToken("notes/" + this.note.id + "/addLabelToNotes/" + labelObject.id + "/remove", data).subscribe((response) => {
+      this.dataService.get_all_note();
+    })
+
+  }
+
+  addUpdateReminder() {
+    const reminderObject = {
+      reminder: [this.date.value],
+      noteIdList: [this.note.id],
+      userId: this.note.userId
+    }
+    this.httpService.postRequestWithToken("/notes/addUpdateReminderNotes", reminderObject).subscribe((response) => {
+      this.snackBar.open("reminder added", "close", { duration: 2500 });
+      this.dataService.get_all_note();
+    })
   }
 }

@@ -1,22 +1,25 @@
 .change-color {
-    display: grid;
-    padding: 0px 4px 0px 4px;
-    grid-template-columns: 25% 25% 25% 25%;
-  }
-  
-  .change-color>button {
-    height: 26px;
-    width: 26px;
-    margin: 2px;
-  }
+  display: grid;
+  padding: 0px 4px 0px 4px;
+  grid-template-columns: 25% 25% 25% 25%;
+}
 
-  
+.change-color>button {
+  height: 26px;
+  width: 26px;
+  margin: 2px;
+}
 
+button#check {height: 26px;
+  width: 26px;
+  margin: 2px;
+}
 
+button.save{
+  float: right;
+}
 
-  
-
-
-  
-
-
+.example-form{
+  padding: 5px;
+  margin: 10px;
+}

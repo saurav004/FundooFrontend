@@ -36,42 +36,28 @@
           </button>
         </div>
         <div fxFlex.md=5 fxFlex.sm=20 fxFlex.xs=4 fxLayoutAlign=end>
-          <button mat-button mat-icon-button (click)="account()" fxShow="true">
-            <img style="width:24px;height:24px;" src="../../../assets/svg/avatar.svg">
+          <button mat-button mat-icon-button fxShow="true">
+            <img  [matMenuTriggerFor]="menu" style="width:24px;height:24px;" src="../../../assets/svg/avatar.svg">
           </button>
         </div>
-        <!-- <div fxFlex=10 fxFlex.md=18 fxFlex.sm=12 fxFlex.xs=15 fxLayoutAlign="end center">
-        <img mat-card-avatar [matMenuTriggerFor]="menu" [src]="" alt="avatar">
         <mat-menu #menu="matMenu">
-          <div fxLayout="row" fxLayoutGap="15px">
+          <div fxFlexFill fxLayout="column" fxLayoutGap="15px">
             <div class="profile-image" style="border-radius: 100%;">
               <img mat-card-avatar style="height: 70px;width: 70px;" [src]="" alt="avatar">
             </div>
             <div class="details" >
-              <mat-card-title style="font-size:14px;font-family: Roboto,Arial,sans-serif;">username
-              </mat-card-title>
               <mat-card-title style="font-size:14px;font-family: Roboto,Arial,sans-serif;">email
               </mat-card-title>
             </div>
           </div>
-          <div class="divider"></div>
           <div class="footer" fxLayout="row" fxLayoutAlign="space-between center" fxFlex=100>
             <button style="margin-left:15px;" mat-raised-button  id="add-btn" color="">Add account</button>
             <button style="margin-right: 15px;" mat-raised-button  id="logout-btn" color="">Sign out</button>
           </div>
         </mat-menu>
-      </div> -->
       </div>
     </div>
   </mat-toolbar>
-  <div>
-    <mat-card class="mat1" *ngIf="open">
-      <div fxLayout="column" fxLayout="row" fxLayoutGap="120px">
-        <button mat-icon-button color="primary" routerLink='/register'>Add Account</button>
-        <button mat-icon-button color="primary" routerLink='/login'>SignOut</button><br>
-      </div>
-    </mat-card>
-  </div>
   <mat-sidenav-container (click)="isPristine=false" fxFlexFill class="sidenavbar">
     <mat-sidenav #sidenav mode='side'>
       <mat-nav-list fxLayout="column" fxFlex="100">

@@ -9,7 +9,8 @@
       </mat-icon>
     </span>
     <span matTooltip="Change color" [matMenuTriggerFor]="matMenuChangeColor">
-      <mat-icon> <img src="../../../assets/outline_palette_black_24dp.png">
+      <mat-icon>
+        <img src="../../../assets/outline_palette_black_24dp.png">
       </mat-icon>
     </span>
     <span matTooltip="Add image">
@@ -28,18 +29,47 @@
       <mat-icon> <img src="../../../assets/outline_more_vert_black_24dp.png">
       </mat-icon>
     </span>
-    <div>
+    <!-- <div>
       <button mat-button (click)="addOrEditNote()">Close</button>
-    </div>
+    </div> -->
   </div>
-  <mat-menu #matMenuReminder="matMenu">
+  <!-- <mat-menu #matMenuReminder="matMenu">
     <div>
-      <h3>Reminder: </h3>
+      <h3>Reminder :</h3>
       <button mat-menu-item>
         <mat-icon>access_time</mat-icon>
-        <input [(ngModel)]="datetimereminder" (ngModelChange)="setReminder()" placeholder="Date Time">
+        <input type="datetime" [(ngModel)]="datetimereminder" (ngModelChange)="setReminder()" placeholder="Date Time">
       </button>
     </div>
+  </mat-menu> -->
+  <mat-menu #matMenuReminder="matMenu">
+    <div><span>Reminder: </span>
+      <button mat-menu-item (click)="addUpdateReminder()">Later Today &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8
+        A.M</button>
+      <button mat-menu-item (click)="addUpdateReminder()">Later Today &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8
+        P.M</button>
+      <button mat-menu-item (click)="addUpdateReminder()">Tomorrow &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8 A.M</button>
+      <button mat-menu-item (click)="addUpdateReminder()">Next Week &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8 A.M</button>
+      <button mat-menu-item [matMenuTriggerFor]="reminderPickDate">
+        <mat-icon>access_time</mat-icon>Pick date & time
+      </button>
+    </div>
+  </mat-menu>
+  <mat-menu #reminderPickDate="matMenu">
+    <span>Pick Date and Time: </span>
+    <hr>
+    <form class="example-form">
+      <mat-form-field (click)="$event.stopPropagation()">
+        <input matInput [ngxMatDatetimePicker]="picker" placeholder="Date and Time" [formControl]="date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <ngx-mat-datetime-picker #picker [showSpinners]="true" [showSeconds]="true" [stepHour]="true"
+          [stepMinute]="true" [stepSecond]="true" [touchUi]="true">
+        </ngx-mat-datetime-picker>
+      </mat-form-field>
+    </form>
+    <button mat-button class="save" (click)="addUpdateReminder(date)" matSuffix matTooltip="add label" mat-icon-button>
+      Save
+    </button>
   </mat-menu>
   <mat-menu #matMenuChangeColor="matMenu">
     <div class='change-color'>
@@ -63,15 +93,29 @@
     <button mat-menu-item>Make a copy</button>
   </mat-menu>
   <mat-menu #addLabels="matMenu">
-    <form >
-    <div>
-      <input matInput type="text" [(ngModel)]="createLabelObject.label" placeholder="Label">
-    </div>
-    <div  style="padding-left: 10px;" *ngFor="let oneLabel of allLabels">
+    <form class="example-form">
+      <mat-form-field (click)="$event.stopPropagation()" class="example-full-width">
+        <button matPrefix matTooltip="clear" class="clear-button" mat-icon-button (click)="createLabelObject.label=''">
+          <mat-icon>close</mat-icon>
+        </button>
+        <input matInput type="text" name="label" [(ngModel)]="createLabelObject.label" placeholder="Label">
+        <button class="check" (click)="addLabel();$event.stopPropagation()" matSuffix matTooltip="add label"
+          mat-icon-button>
+          <img src="../../../assets/outline_check_black_24dp.png">
+        </button>
+      </mat-form-field>
+    </form>
+    <div (click)="$event.stopPropagation()" style="padding-left: 10px;"
+      *ngFor="let oneLabel of note.noteLabels,let i = index">
+      <!-- <div>
+        <mat-checkbox class="example-margin" id="{{i}}" name="{{i}}label" (change)='addExistingLabelToNote(oneLabel)'>
+          {{oneLabel.label}}</mat-checkbox>
+      </div> -->
       <div>
-        <input type="checkbox" checked (click)='addedLabel(note, oneLabel.label)'><label>{{oneLabel.label}} </label>
+        <mat-checkbox class="example-margin" checked="true" id="{{i}}" name="{{i}}label"
+          (change)='removeExistingLabelFromNote(oneLabel)'>
+          {{oneLabel.label}}</mat-checkbox>
       </div>
     </div>
-    </form>
   </mat-menu>
 </div>
